@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stride/screens/homepage.dart';
+
 import 'package:stride/splash.dart';
 
 void main() {
