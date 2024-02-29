@@ -76,6 +76,7 @@ flutter:
     - family: Maturascript
       fonts: 
         - asset: assets/fonts/maturasc.ttf
+          style: Regular
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
