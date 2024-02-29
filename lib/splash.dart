@@ -10,6 +10,8 @@ class SplashScreen
     return Scaffold(
       body: 
       Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/splash.jpg'),
@@ -24,6 +26,13 @@ class SplashScreen
                 Colors.transparent, 
               ], 
               begin: Alignment.bottomCenter), 
+          ),
+          child: 
+          Column(
+            children: [
+
+              Text('Thousand of Shoe Styles\nfrom Top Brands')
+            ],
           ),
         ),
       ),
