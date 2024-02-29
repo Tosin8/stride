@@ -31,7 +31,11 @@ class SplashScreen
            Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-const Text('Stride',style: TextStyle(color: Colors.white, fontSize: 30),), 
+const Text('Stride',
+style: TextStyle(
+  color: Colors.white, 
+  fontSize: 30, 
+  fontFamily: 'Maturascript'),), 
         const SizedBox(height: 10,), 
         const Divider(
           height: 3, thickness: 2,indent: 100, endIndent: 100,
