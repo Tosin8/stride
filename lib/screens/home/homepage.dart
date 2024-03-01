@@ -45,7 +45,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
              
               const Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),),
+                child: Text('Collection',
+                 style: TextStyle(
+                  fontSize: 25, 
+                  fontWeight: FontWeight.w500),),
               ), 
              
               const productCarousel(), 
@@ -62,41 +65,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 }
 
-class productTabContents extends StatelessWidget {
-  const productTabContents({
-    super.key,
-    required TabController tabController,
-  }) : _tabController = tabController;
-
-  final TabController _tabController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-       width: double.maxFinite,
-       height: MediaQuery.of(context).size.height,
-       child:  TabBarView(
-         controller: _tabController,
-         children: const [
-          
-             popularPage(),
-           
-          
-          
-             Text('Popular'),
-           
-             Text('Adidas'),
-           
-           
-            
-            Text('Nike'),
-         
-             Text('Puma'),
-           
-         ]),
-     );
-  }
-}
 
 
 
@@ -107,24 +75,35 @@ class popularPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width, 
-      height: MediaQuery.of(context).size.height,
-      child: CarouselSlider(
-        options: CarouselOptions(
-          height: 440, 
-        
-         // aspectRatio: 16/9, 
-          //viewportFraction: 0.70, 
-          enlargeCenterPage: true, 
+    return ListView(
+      children: [
+      Container(
+        width: MediaQuery.of(context).size.width, 
+        height: MediaQuery.of(context).size.height,
+        child: CarouselSlider(
+          options: CarouselOptions(
+            height: 440, 
+          
+           // aspectRatio: 16/9, 
+            //viewportFraction: 0.70, 
+            enlargeCenterPage: true,  
+          ),
+          items: List.generate(
+            productSliders.length,
+           (index) => productCarouselCard(
+             productSliders: productSliders[index],
+           ) )
+          ),
+       ),
+       Text('New Arrival', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),), 
+       SizedBox(height: 10,), 
+       Container(
+        height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), 
+        color: Colors.black
         ),
-        items: List.generate(
-          productSliders.length,
-         (index) => productCarouselCard(
-           productSliders: productSliders[index],
-         ) )
-        ),
-     );
+        child: const Center(child: Text('View All', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
+       )
+    ]);
   }
 }
 

@@ -114,10 +114,12 @@ class productTabContents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    Container(
        width: double.maxFinite,
        height: MediaQuery.of(context).size.height,
-       child:  TabBarView(
+      child: 
+        TabBarView(
          controller: _tabController,
          children: const [
           
@@ -135,7 +137,7 @@ class productTabContents extends StatelessWidget {
          
              Text('Puma'),
            
-         ]),
-     );
+         ]));
+     
   }
 }
