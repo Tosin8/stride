@@ -1,7 +1,4 @@
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slider/carousel.dart';
 import 'package:stride/screens/home/hwidget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,9 +8,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    TabController _tabController = TabController(
+      length: 5, vsync: this);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -38,35 +37,66 @@ class _HomeScreenState extends State<HomeScreen> {
               const Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),), 
              
               const productCarousel(), 
-              const SizedBox(height: 10,), 
+               
               Container(
-                child: const TabBar(
-                  tabs: [
-                    Tab(
-                      child: Text('Popular',
-                       style: TextStyle(color: Colors.black),),
+                width: double.maxFinite,
+                
+              //  height: MediaQuery.of(context).size.height, 
+                child:  TabBar(
+                    tabAlignment: TabAlignment.start,
+                    isScrollable: true,
+                    controller: _tabController,
+                    labelColor: Colors.black,
+                    labelPadding: const EdgeInsets.only(left: 20, right: 20),
+                    unselectedLabelColor: Colors.grey, 
+                    indicator: CircleTabIndicator(
+                      color:Colors.black12,
+                       radius: 4),
+                    tabs: [
+                      const Tab(
+                        child: Text('Popular',
+                        ),
+                      ), 
+                       const Tab(
+                        child: Text('Adidas',
+                        ),
+                      ),
+                       const Tab(
+                        child: Text('Jordan',
+                         ),
+                      ),
+                       const Tab(
+                        child: Text('Nike',
+                        ),
+                      ),
+                       const Tab(
+                        child: Text('Puma',
+                      ),
+                      ),
+                  
+                  ]),
+                ),
+              
+              Container(
+                child:  TabBarView(
+                  controller: _tabController,
+                  children: [
+                    Container(
+                      child:  Text('Popular'),
                     ), 
-                     Tab(
-                      child: Text('Adidas',
-                       style: TextStyle(color: Colors.black),),
-                    ),
-                     Tab(
-                      child: Text('Jordan',
-                       style: TextStyle(color: Colors.black),),
-                    ),
-                     Tab(
-                      child: Text('Nike',
-                       style: TextStyle(color: Colors.black),),
-                    ),
-                     Tab(
-                      child: Text('Puma',
-                       style: TextStyle(color: Colors.black),),
-                    ),
-
-                ]),
-              ), 
-              Container(
-                child: const TabBarView(children: []),
+                    Container(
+                      child:  Text('Adidas'),
+                    ), 
+                    Container(
+                      child:  Text('Jordan'),
+                    ), 
+                    Container(
+                      child:  Text('Nike'),
+                    ), 
+                    Container(
+                      child:  Text('Puma'),
+                    )
+                  ]),
               )
             ],
           ),
@@ -76,3 +106,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+
+
+class CircleTabIndicator extends Decoration{
+  final Color color;
+  double radius; 
+
+  CircleTabIndicator({required this.color, required this.radius});
+  
+  @override
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
+  
+    return _CirclePainter(color: color, radius: radius);
+  }
+}

@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:stride/screens/homepage.dart';
+import 'package:stride/screens/home/homepage.dart';
 
 class SplashScreen
  extends StatelessWidget {
