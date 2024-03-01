@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:stride/model/productSlider.dart';
 
 import 'package:stride/screens/home/hwidget.dart';
 
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       length: 5, vsync: this);
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         leading: Image.asset('assets/icons/menu_32.png'),
@@ -90,7 +92,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child:  TabBarView(
                     controller: _tabController,
                     children: [
-                     Container(color: Colors.red,), 
+                     Container(
+                      width: MediaQuery.of(context).size.width, 
+                      height: MediaQuery.of(context).size.height,
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          height: 400, 
+                          aspectRatio: 16/9, 
+                          viewportFraction: 0.70, 
+                          enlargeCenterPage: true, 
+                        ),
+                        items: List.generate(
+                          productSliders.length,
+                         (index) => productCarouselCard(
+                           productSlider: productSliders[index],
+                         ) )
+                        ),
+                     ), 
                         Text('Popular'),
                       
                        Text('Adidas'),
@@ -109,6 +127,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
       ); 
     
+  }
+}
+
+class productCarouselCard extends StatelessWidget {
+  const productCarouselCard({
+    super.key, required this.productSlider,
+  });
+final ProductSlider productSlider; 
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+     onTap: () {
+      
+     },
+     child: AnimatedContainer(duration: const Duration(
+       milliseconds: 300 ),
+       decoration: const BoxDecoration(), 
+       child: SingleChildScrollView(
+         child: Column(
+           children: [
+             Container(
+               height: 320,
+               child: Image.asset(productSliders.image),  
+             ),
+           ],
+         ),
+       ),
+     ),
+    );
   }
 }
 
