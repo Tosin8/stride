@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width:MediaQuery.of(context).size.width ,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(image: AssetImage('assets/banner/banner_adj.jpg'), 
+                      image: const DecorationImage(image: AssetImage('assets/banner/banner_2.jpg'), 
                       fit: BoxFit.contain),
                     ),
                     ),
