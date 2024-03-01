@@ -62,6 +62,15 @@ flutter:
     #banner
     - assets/banner/banner_adj.jpg
     - assets/banner/banner_2.jpg
+
+    #productslider
+    - assets/products/slider/1.jpg
+    - assets/products/slider/2.jpg
+    - assets/products/slider/3.jpg
+    - assets/products/slider/4.jpg
+    - assets/products/slider/5.jpg
+    - assets/products/slider/6.jpg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

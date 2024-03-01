@@ -1,4 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:stride/screens/home/hwidget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,7 +37,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           child: ListView( 
             children:  [
              
-              const Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),), 
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),),
+              ), 
              
               const productCarousel(), 
                
@@ -50,26 +56,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     labelPadding: const EdgeInsets.only(left: 20, right: 20),
                     unselectedLabelColor: Colors.grey, 
                     indicator: CircleTabIndicator(
-                      color:Colors.black12,
+                      color:Colors.black,
                        radius: 4),
-                    tabs: [
-                      const Tab(
+                    tabs: const [
+                       Tab(
                         child: Text('Popular',
                         ),
                       ), 
-                       const Tab(
+                        Tab(
                         child: Text('Adidas',
                         ),
                       ),
-                       const Tab(
+                        Tab(
                         child: Text('Jordan',
                          ),
                       ),
-                       const Tab(
+                       Tab(
                         child: Text('Nike',
                         ),
                       ),
-                       const Tab(
+                       Tab(
                         child: Text('Puma',
                       ),
                       ),
@@ -77,26 +83,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ]),
                 ),
               
-              Container(
-                child:  TabBarView(
-                  controller: _tabController,
-                  children: [
-                    Container(
-                      child:  Text('Popular'),
-                    ), 
-                    Container(
-                      child:  Text('Adidas'),
-                    ), 
-                    Container(
-                      child:  Text('Jordan'),
-                    ), 
-                    Container(
-                      child:  Text('Nike'),
-                    ), 
-                    Container(
-                      child:  Text('Puma'),
-                    )
-                  ]),
+              Expanded(
+                child: Container(
+                  width: double.maxFinite,
+                  height: MediaQuery.of(context).size.height,
+                  child:  TabBarView(
+                    controller: _tabController,
+                    children: [
+                     Container(color: Colors.red,), 
+                        Text('Popular'),
+                      
+                       Text('Adidas'),
+                      
+                      
+                       
+                       Text('Nike'),
+                    
+                       Text('Puma'),
+                      
+                    ]),
+                ),
               )
             ],
           ),
@@ -118,5 +124,24 @@ class CircleTabIndicator extends Decoration{
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
   
     return _CirclePainter(color: color, radius: radius);
+  }
+}
+
+class _CirclePainter extends BoxPainter {
+  final Color color;
+  late final double radius;
+  _CirclePainter({
+    required this.color,
+    required this.radius,
+  });
+  
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+    late Paint _paint;
+    _paint = Paint()..color = color;
+    _paint = _paint..isAntiAlias = true;
+    final Offset circleOffset = offset + Offset(
+      configuration.size!.width / 2, configuration.size!.height - radius); 
+      canvas.drawCircle(circleOffset, radius, _paint); 
   }
 }
