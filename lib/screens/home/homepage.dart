@@ -31,16 +31,42 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: 
         Padding(
-          padding:  EdgeInsets.all(8.0),
+          padding:  const EdgeInsets.all(8.0),
           child: ListView( 
             children:  [
              
               const Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),), 
              
-              productCarousel(), 
-              SizedBox(height: 10,), 
+              const productCarousel(), 
+              const SizedBox(height: 10,), 
               Container(
-                child: TabBar(tabs: []),
+                child: const TabBar(
+                  tabs: [
+                    Tab(
+                      child: Text('Popular',
+                       style: TextStyle(color: Colors.black),),
+                    ), 
+                     Tab(
+                      child: Text('Adidas',
+                       style: TextStyle(color: Colors.black),),
+                    ),
+                     Tab(
+                      child: Text('Jordan',
+                       style: TextStyle(color: Colors.black),),
+                    ),
+                     Tab(
+                      child: Text('Nike',
+                       style: TextStyle(color: Colors.black),),
+                    ),
+                     Tab(
+                      child: Text('Puma',
+                       style: TextStyle(color: Colors.black),),
+                    ),
+
+                ]),
+              ), 
+              Container(
+                child: const TabBarView(children: []),
               )
             ],
           ),
