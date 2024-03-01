@@ -29,9 +29,11 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animate_do: ^3.3.4
+  carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
+  flutter_image_slider: ^0.0.2
   font_awesome_flutter: ^10.7.0
   page_transition: ^2.1.0
 
@@ -57,8 +59,8 @@ flutter:
     - assets/icons/menu_32.png
     - assets/icons/bell.png
 
-    #banner 
-    - assets/banner/banner_1.jpg
+    #banner
+    - assets/banner/banner_adj.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_image_slider/carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,25 +28,57 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 10),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: ListView(
-          children:  [
-           
-            const Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),), 
-            const SizedBox(height: 3,), 
-            Container(
-              height: 250, 
-              width:MediaQuery.of(context).size.width ,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: const DecorationImage(image: AssetImage('assets/banner/banner_1.jpg'), 
-                fit: BoxFit.cover),
-              ),
+      body: 
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView( 
+            children:  [
+             
+              const Text('Collection', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),), 
+             
+              Container(
+                width: MediaQuery.of(context).size.width,
+                
+                child: CarouselSlider(
+                  options: CarouselOptions( 
+                    
+                    pauseAutoPlayOnTouch: true,
+                    autoPlayAnimationDuration: const Duration(milliseconds: 1000),
+                    aspectRatio: 16/9,
+                    enlargeCenterPage: true,
+                    autoPlay: true,
+                    enableInfiniteScroll: true,
+                    autoPlayCurve: Curves.easeInOut,  
+                    
+                  ),
+                  
+                  items: [
+                
+                  Container(
+                    height: 250, 
+                    width:MediaQuery.of(context).size.width ,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(image: AssetImage('assets/banner/banner_adj.jpg'), 
+                      fit: BoxFit.contain),
+                    ),
+                    ),
+                    
+                  Container(
+                    height: 250, 
+                    width:MediaQuery.of(context).size.width ,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(image: AssetImage('assets/banner/banner_adj.jpg'), 
+                      fit: BoxFit.contain),
+                    ),
+                    ),
+                           ] ),
               )
-          ],
+            ],
+          ),
         ),
-      )
-    );
+      ); 
+    
   }
 }

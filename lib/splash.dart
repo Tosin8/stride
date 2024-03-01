@@ -13,7 +13,7 @@ class SplashScreen
     return Scaffold(
       body: 
       FadeIn(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 100),
         curve: Curves.easeInOutQuad,
         child: Container(
           width: MediaQuery.of(context).size.width,
