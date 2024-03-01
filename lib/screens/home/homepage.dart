@@ -13,6 +13,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+
+  int _current = 0; 
+  dynamic _selectdProduct = {}; 
+
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(
@@ -85,8 +89,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ]),
                 ),
               
-              Expanded(
-                child: Container(
+               Container(
                   width: double.maxFinite,
                   height: MediaQuery.of(context).size.height,
                   child:  TabBarView(
@@ -97,7 +100,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       height: MediaQuery.of(context).size.height,
                       child: CarouselSlider(
                         options: CarouselOptions(
-                          height: 400, 
+                          height: 440, 
+                        
                           aspectRatio: 16/9, 
                           viewportFraction: 0.70, 
                           enlargeCenterPage: true, 
@@ -105,23 +109,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         items: List.generate(
                           productSliders.length,
                          (index) => productCarouselCard(
-                           productSlider: productSliders[index],
+                           productSliders: productSliders[index],
                          ) )
                         ),
                      ), 
-                        Text('Popular'),
+                        const Text('Popular'),
                       
-                       Text('Adidas'),
+                       const Text('Adidas'),
                       
                       
                        
-                       Text('Nike'),
+                       const Text('Nike'),
                     
-                       Text('Puma'),
+                       const Text('Puma'),
                       
                     ]),
                 ),
-              )
+              
             ],
           ),
         ),
@@ -132,25 +136,74 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
 class productCarouselCard extends StatelessWidget {
   const productCarouselCard({
-    super.key, required this.productSlider,
+    super.key, required this.productSliders,
   });
-final ProductSlider productSlider; 
+final ProductSlider productSliders; 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
      onTap: () {
       
      },
-     child: AnimatedContainer(duration: const Duration(
-       milliseconds: 300 ),
-       decoration: const BoxDecoration(), 
+     child: AnimatedContainer(
+      duration: const Duration(
+       milliseconds: 300 
+       ),
+       decoration:  BoxDecoration(
+        color: Colors.white, 
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2), 
+            blurRadius: 20, 
+
+            offset: const Offset(0, 5), 
+          )
+        ]), 
        child: SingleChildScrollView(
          child: Column(
            children: [
              Container(
-               height: 320,
-               child: Image.asset(productSliders.image),  
+               height: 280,
+               width: 300,
+               clipBehavior: Clip.hardEdge,
+               margin: const EdgeInsets.only(top: 10), 
+               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), 
+               ),
+               child: Image.asset(productSliders.image, 
+               fit: BoxFit.cover,), 
+                
              ),
+             const SizedBox(height: 20,), 
+             Text(productSliders.title, 
+             style: const TextStyle(
+              fontSize: 20,
+               fontWeight: FontWeight.bold),), 
+               const SizedBox(height: 8),
+               Text(productSliders.category, style: TextStyle(fontSize: 16, color: Colors.black.withOpacity(0.7)),),  
+               const SizedBox(height: 8),
+               Text(productSliders.price.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold, 
+                  fontSize: 16),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        height: 40, width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10), 
+                          ),
+                          color: Colors.black,
+                        ),
+                        child: Icon(Icons.add, color: Colors.white,size: 30,),
+                      ), 
+                      SizedBox(width: 20,), 
+                    ],
+                  ) 
            ],
          ),
        ),

@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class ProductSlider {
-  final String image;
-  final String title; 
-  final String category;
-  final double price;
+   String image;
+   String title; 
+   String category;
+   double price;
   ProductSlider({
     required this.image,
     required this.title,
@@ -14,12 +14,7 @@ class ProductSlider {
 
 
 List<ProductSlider> productSliders = [
-  ProductSlider(
-    image: "assets/products/slider/1.jpg",
-    title: "Product 1",
-    category: "Adidas",
-    price: 200,
-  ), 
+  
   ProductSlider(
     image: "assets/products/slider/2.jpg",
     title: "Product 1",
