@@ -30,28 +30,62 @@
 import 'package:flutter/material.dart';
 
 void main() {
-      runApp(MaterialApp(
+      runApp(
+        MaterialApp(
         home: Scaffold(
-          body: NestedScrollView(
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  title: const Text('NestedScrollView Example'),
-                  floating: true,
-                  pinned: true,
-                  forceElevated: innerBoxIsScrolled,
-                ),
-              ];
-            },
-            body: ListView.builder(
-              itemCount: 50,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text('List Item $index'),
+          body: 
+          NestedScrollView(
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            title: const Text('NestedScrollView Example'),
+            pinned: true,
+            floating: true,
+            forceElevated: innerBoxIsScrolled,
+            bottom: TabBar(
+              tabs: List<Widget>.generate(10, (int index) {
+                return Tab(text: 'Tab $index');
+              }),
+            ),
+          ),
+        ];
+      },
+      body: TabBarView(
+        children: List<Widget>.generate(10, (int index) {
+          return SafeArea(
+            top: false,
+            bottom: false,
+            child: Builder(
+              builder: (BuildContext context) {
+                return CustomScrollView(
+                  key: PageStorageKey<int>(index),
+                  slivers: <Widget>[
+                    SliverOverlapInjector(
+                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(8.0),
+                      sliver: SliverFixedExtentList(
+                        itemExtent: 48.0,
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return ListTile(
+                              title: Text('Item $index'),
+                            );
+                          },
+                          childCount: 30,
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
-          ),
-        ),
-      ));
-    }
+          );
+        }),
+      ),
+    )
+        )
+        )
+        );
+        }
