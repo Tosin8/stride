@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:stride/splash.dart';
 
+import 'runs.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen()
+      home: const Runs(),
     );
   }
 }
