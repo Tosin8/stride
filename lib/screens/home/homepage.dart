@@ -77,26 +77,30 @@ class popularPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-      Container(
-        width: MediaQuery.of(context).size.width, 
-        height: MediaQuery.of(context).size.height,
-        child: CarouselSlider(
-          options: CarouselOptions(
-            height: 440, 
+      // Container(
+      //   width: MediaQuery.of(context).size.width, 
+      //   height: MediaQuery.of(context).size.height,
+      //   child: CarouselSlider(
+      //     options: CarouselOptions(
+      //       height: 440, 
           
-           // aspectRatio: 16/9, 
-            //viewportFraction: 0.70, 
-            enlargeCenterPage: true,  
-          ),
-          items: List.generate(
-            productSliders.length,
-           (index) => productCarouselCard(
-             productSliders: productSliders[index],
-           ) )
-          ),
-       ),
-       Text('New Arrival', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),), 
-       SizedBox(height: 10,), 
+      //      // aspectRatio: 16/9, 
+      //       //viewportFraction: 0.70, 
+      //       enlargeCenterPage: true,  
+      //     ),
+      //     items: List.generate(
+      //       productSliders.length,
+      //      (index) => productCarouselCard(
+      //        productSliders: productSliders[index],
+      //      ) )
+      //     ),
+      //  ),
+       const Text('New Arrival', 
+       style: TextStyle(
+        color: Colors.black, 
+        fontWeight: FontWeight.bold,
+        fontSize: 18),), 
+       const SizedBox(height: 10,), 
        Container(
         height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), 
         color: Colors.black
