@@ -46,8 +46,10 @@ class popularPage extends StatelessWidget {
         title: 'New Arrival',
       ), 
        const SizedBox(height: 10,), 
-       Flexible(
-        flex: 1,
+       Padding(
+        padding: const EdgeInsets.all(10),
+        
+        
          child: Expanded(
            child: ListView.builder(
             shrinkWrap: true,
@@ -77,6 +79,7 @@ final newArrivalProduct newArrivalProducts;
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 300, width: 280, 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), 
           color: Colors.white,
@@ -90,8 +93,8 @@ final newArrivalProduct newArrivalProducts;
             )
           ]
         ),
-         width: 280, 
-         height: 100,
+         
+        
          child: Row(
           children: [
             CircleAvatar(
@@ -110,7 +113,8 @@ final newArrivalProduct newArrivalProducts;
                   ),), 
                 Text(newArrivalProducts.category), 
                 Text(newArrivalProducts.price.toString(), 
-                style: const TextStyle(fontSize: 18,
+                style: const TextStyle(
+                  fontSize: 18,
                  fontWeight: FontWeight.bold),)
               ],
             ), 
