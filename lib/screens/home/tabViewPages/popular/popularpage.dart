@@ -46,6 +46,9 @@ class popularPage extends StatelessWidget {
       ), 
        const SizedBox(height: 10,), 
        ListView.builder(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(8),
+        scrollDirection: Axis.horizontal,
         itemCount: newArrivalProducts.length,
         itemBuilder: (_, index){
           return NewArrivalProductCard(
