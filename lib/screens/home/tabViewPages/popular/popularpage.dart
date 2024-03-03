@@ -19,6 +19,8 @@ class popularPage extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical, 
       child: Column(
+        
+        
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
       const SizedBox(height: 10,), 
@@ -46,22 +48,26 @@ class popularPage extends StatelessWidget {
         title: 'New Arrival',
       ), 
        const SizedBox(height: 10,), 
-       Padding(
-        padding: const EdgeInsets.all(10),
+       Container(
+        height: 130,
         
-        
-         child: Expanded(
-           child: ListView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(8),
-            scrollDirection: Axis.horizontal,
-            itemCount: newArrivalProducts.length,
-            itemBuilder: (_, index){
-              return NewArrivalProductCard(
-                newArrivalProducts: newArrivalProducts[index],);
-            }),
+          
+           child: Expanded(
+             child: ListView.builder(
+              
+          
+              scrollDirection: Axis.horizontal,
+              itemCount: newArrivalProducts.length,
+              itemBuilder: (_, index){
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: NewArrivalProductCard(
+                    newArrivalProducts: newArrivalProducts[index],),
+                );
+              }),
+           ),
          ),
-       )
+      
        
 
        
@@ -98,10 +104,11 @@ final newArrivalProduct newArrivalProducts;
          child: Row(
           children: [
             CircleAvatar(
-              radius: 60, 
+              radius: 45, 
               backgroundColor: Colors.black,
               backgroundImage: AssetImage(newArrivalProducts.image),
             ), 
+            SizedBox(width: 10,), 
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
