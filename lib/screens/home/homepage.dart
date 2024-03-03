@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           // IconButton(
           //   onPressed: (){}, 
           //   icon: Icon(Icons.notifications))
+          // ignore: sized_box_for_whitespace
           Container(
             width:25, height: 25,
             child: Image.asset('assets/icons/bell.png')), 
@@ -120,34 +121,3 @@ class popularPage extends StatelessWidget {
 
 
 
-class CircleTabIndicator extends Decoration{
-  final Color color;
-  double radius; 
-
-  CircleTabIndicator({required this.color, required this.radius});
-  
-  @override
-  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-  
-    return _CirclePainter(color: color, radius: radius);
-  }
-}
-
-class _CirclePainter extends BoxPainter {
-  final Color color;
-  late final double radius;
-  _CirclePainter({
-    required this.color,
-    required this.radius,
-  });
-  
-  @override
-  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    late Paint _paint;
-    _paint = Paint()..color = color;
-    _paint = _paint..isAntiAlias = true;
-    final Offset circleOffset = offset + Offset(
-      configuration.size!.width / 2, configuration.size!.height - radius); 
-      canvas.drawCircle(circleOffset, radius, _paint); 
-  }
-}
