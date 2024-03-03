@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:stride/model/productSlider.dart';
 
+import '../widgets.dart';
 import 'productCarouselCard.dart';
 
 class popularPage extends StatelessWidget {
@@ -39,11 +40,9 @@ class popularPage extends StatelessWidget {
            ) )
           ),
        SizedBox(height: 20,), 
-      Text('New Arrival', 
-       style: TextStyle(
-        color: Colors.black, 
-        fontWeight: FontWeight.bold,
-        fontSize: 18),), 
+      titleProducts(
+        title: 'New Arrival',
+      ), 
        const SizedBox(height: 10,), 
        
 

@@ -32,3 +32,21 @@ class _CirclePainter extends BoxPainter {
       canvas.drawCircle(circleOffset, radius, _paint); 
   }
 }
+
+
+
+class titleProducts extends StatelessWidget {
+   titleProducts({ required this.title, 
+    super.key,
+  });
+
+String title; 
+  @override
+  Widget build(BuildContext context) {
+    return Text(title, 
+     style: TextStyle(
+      color: Colors.black, 
+      fontWeight: FontWeight.bold,
+      fontSize: 18),);
+  }
+}
