@@ -64,7 +64,7 @@ final ProductSlider productSliders;
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          height: 30, width: 40,
+                          height: 40, width: 40,
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
