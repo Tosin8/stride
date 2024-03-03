@@ -18,11 +18,11 @@ final List newArrivalProducts = [
   ), newArrivalProduct(
     image: "assets/products/newarrival/2.jpg",
     title: "Product 1",
-    category: "Adidas",
+    category: "Nike",
   ), newArrivalProduct(
     image: "assets/products/newarrival/3.jpg",
     title: "Product 1",
-    category: "Adidas",
+    category: "Jordan",
   ), newArrivalProduct(
     image: "assets/products/newarrival/4.jpg",
     title: "Product 1",
