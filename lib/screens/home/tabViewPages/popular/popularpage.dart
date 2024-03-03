@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stride/model/newarrivalproducts.dart';
 import 'package:stride/model/productSlider.dart';
 
@@ -45,15 +46,20 @@ class popularPage extends StatelessWidget {
         title: 'New Arrival',
       ), 
        const SizedBox(height: 10,), 
-       ListView.builder(
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
-        scrollDirection: Axis.horizontal,
-        itemCount: newArrivalProducts.length,
-        itemBuilder: (_, index){
-          return NewArrivalProductCard(
-            newArrivalProducts: newArrivalProducts[index],);
-        })
+       Flexible(
+        flex: 1,
+         child: Expanded(
+           child: ListView.builder(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(8),
+            scrollDirection: Axis.horizontal,
+            itemCount: newArrivalProducts.length,
+            itemBuilder: (_, index){
+              return NewArrivalProductCard(
+                newArrivalProducts: newArrivalProducts[index],);
+            }),
+         ),
+       )
        
 
        
