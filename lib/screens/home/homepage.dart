@@ -75,39 +75,41 @@ class popularPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical, 
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+      SizedBox(height: 10,), 
+      
       // Container(
       //   width: MediaQuery.of(context).size.width, 
       //   height: MediaQuery.of(context).size.height,
-      //   child: CarouselSlider(
-      //     options: CarouselOptions(
-      //       height: 440, 
+      //   child: 
+      CarouselSlider(
+          options: CarouselOptions(
+            height: 300, 
           
-      //      // aspectRatio: 16/9, 
-      //       //viewportFraction: 0.70, 
-      //       enlargeCenterPage: true,  
-      //     ),
-      //     items: List.generate(
-      //       productSliders.length,
-      //      (index) => productCarouselCard(
-      //        productSliders: productSliders[index],
-      //      ) )
-      //     ),
-      //  ),
-       const Text('New Arrival', 
+           // aspectRatio: 16/9, 
+            viewportFraction: 0.70, 
+            enlargeCenterPage: true,  
+          ),
+          items: List.generate(
+            productSliders.length,
+           (index) => productCarouselCard(
+             productSliders: productSliders[index],
+           ) )
+          ),
+       
+      Text('New Arrival', 
        style: TextStyle(
         color: Colors.black, 
         fontWeight: FontWeight.bold,
         fontSize: 18),), 
        const SizedBox(height: 10,), 
-       Container(
-        height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), 
-        color: Colors.black
-        ),
-        child: const Center(child: Text('View All', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
-       )
-    ]);
+       
+       
+    ]));
   }
 }
 
@@ -137,55 +139,63 @@ final ProductSlider productSliders;
             offset: const Offset(0, 5), 
           )
         ]), 
-       child: SingleChildScrollView(
-         child: Column(
-           children: [
-             Container(
-               height: 280,
-               width: 300,
-               clipBehavior: Clip.hardEdge,
-               margin: const EdgeInsets.only(top: 10), 
-               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), 
+        child: 
+      SingleChildScrollView(
+        child: Column(
+             children: [
+               Container(
+                 height: 200,
+                 width: 400,
+                 clipBehavior: Clip.hardEdge,
+               
+                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), 
+                 ),
+                 child: Image.asset(productSliders.image, 
+                 fit: BoxFit.cover,), 
+                  
                ),
-               child: Image.asset(productSliders.image, 
-               fit: BoxFit.cover,), 
-                
-             ),
-             const SizedBox(height: 20,), 
-             Text(productSliders.title, 
-             style: const TextStyle(
-              fontSize: 20,
-               fontWeight: FontWeight.bold),), 
-               const SizedBox(height: 8),
-               Text(productSliders.category, style: TextStyle(fontSize: 16, color: Colors.black.withOpacity(0.7)),),  
-               const SizedBox(height: 8),
-               Text(productSliders.price.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold, 
-                  fontSize: 16),),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        height: 40, width: 40,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10), 
+              // const SizedBox(height: 10,), 
+               Text(productSliders.title, 
+               style: const TextStyle(
+                fontSize: 20,
+                 fontWeight: FontWeight.bold),), 
+                // const SizedBox(height: 3),
+                 Text(productSliders.category,
+                  style: TextStyle(
+                    fontSize: 16,
+                   color: Colors.black.withOpacity(0.7)),
+                   ),  
+        //const SizedBox(height: 3),
+                 Text(productSliders.price.toString(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold, 
+                    fontSize: 16),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 30, width: 40,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10), 
+                            ),
+                            color: Colors.black,
                           ),
-                          color: Colors.black,
-                        ),
-                        child: const Icon(Icons.add, color: Colors.white,size: 30,),
-                      ), 
-                      const SizedBox(width: 20,), 
-                    ],
-                  ) 
-           ],
-         ),
+                          child: const Icon(Icons.add, color: Colors.white,
+                          size: 20,),
+                        ), 
+                        const SizedBox(width: 5,), 
+                    
+                      ],
+                    ) 
+             ],
+           ),
+      ),
        ),
-     ),
-    );
+     );
+    
   }
 }
 
