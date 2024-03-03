@@ -100,7 +100,7 @@ class popularPage extends StatelessWidget {
              productSliders: productSliders[index],
            ) )
           ),
-       
+       SizedBox(height: 20,), 
       Text('New Arrival', 
        style: TextStyle(
         color: Colors.black, 
@@ -108,6 +108,7 @@ class popularPage extends StatelessWidget {
         fontSize: 18),), 
        const SizedBox(height: 10,), 
        
+
        
     ]));
   }
