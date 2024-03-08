@@ -3,10 +3,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:stride/common/widgets/titleProducts.dart';
 import 'package:stride/model/newarrivalproducts.dart';
 import 'package:stride/model/productSlider.dart';
 
-import '../widgets.dart';
+
 import 'productCarouselCard.dart';
 
 class popularPage extends StatelessWidget {

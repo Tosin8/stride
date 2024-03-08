@@ -1,11 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:stride/model/productSlider.dart';
 
-import 'package:stride/screens/home/hwidget.dart';
 
-import 'tabViewPages/popular/productCarouselCard.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
