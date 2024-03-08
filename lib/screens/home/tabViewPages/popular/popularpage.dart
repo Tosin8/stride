@@ -117,9 +117,12 @@ final dealsProduct dealsProducts;
             height: 150, 
             decoration: BoxDecoration(
               image: DecorationImage(
-                dealsProducts.image; 
+                image: AssetImage(
+                  dealsProducts.image
+                )
+                
               ),
-               fit: BoxFit.cover,  
+              
             )
           )
         ]
