@@ -5,15 +5,15 @@ class dealsProduct {
   String category; 
 
   dealsProduct({
-    required this.image; 
-    required this.title; 
-    required this.category; 
-    required this.price; 
-  })
+    required this.image,
+    required this.title,
+    required this.category,
+    required this.price,
+  });
 }
 
 
-final List dealsProducts = [
+ List <dealsProduct> dealsProducts = [
   dealsProduct(
     image: "assets/products/newarrival/1.jpg",
     title: "Product 1",
