@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:flutter/widgets.dart';
 import 'package:stride/model/deals_product.dart';
 
 
@@ -49,11 +50,11 @@ class popularPage extends StatelessWidget {
           ),
        const SizedBox(height: 20,), 
       titleProducts(
-        title: 'New Arrival',
+        title: 'New Arrival Products',
       ), 
        const SizedBox(height: 10,), 
        Container(
-        height: 130,
+        height: 120,
         
           
            child: Expanded(
@@ -74,25 +75,29 @@ class popularPage extends StatelessWidget {
          ),
          const SizedBox(height: 10,), 
           titleProducts(
-        title: '30% Deals',
+        title: '30% Deals Products',
       ), 
-      Flexible(child: 
-      GridView.builder(
-         physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                crossAxisSpacing: 5.0,
-                mainAxisSpacing: 5.0,
-              ),
-
-        itemCount: DealsProducts.length,
-        itemBuilder: (_, index){
-          return dealProductsCard(
-            DealsProducts: DealsProducts[index],
-          );
-        }
-      )), 
+      const SizedBox(height: 20,), 
+      Container(
+      height: 1500,
+        child: Expanded(child: 
+        GridView.builder(
+           physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 15.0,
+                  mainAxisSpacing: 100.0,
+                ),
+        
+          itemCount: DealsProducts.length,
+          itemBuilder: (_, index){
+            return dealProductsCard(
+              DealsProducts: DealsProducts[index],
+            );
+          }
+        )),
+      ), 
       
        
 
@@ -112,23 +117,70 @@ class dealProductsCard extends StatelessWidget {
 final DealsProduct DealsProducts; 
   @override
   Widget build(BuildContext context, ) {
-    return Card(
-      child: Column( 
+    return Container(
+    height: 1500, 
+      child: ListView(
+        shrinkWrap: true,
         children: [
-          Container(
-            height: 150, 
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  DealsProducts.image
-                )
-                
+        Column( 
+        crossAxisAlignment: CrossAxisAlignment.start,
+        
+          children: [
+            Container(
+              height: 150, 
+              decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10), 
+              topRight: Radius.circular(10)
               ),
-              
-            )
-          )
-        ]
-      )
+                image: DecorationImage(
+                  image: AssetImage(
+                    DealsProducts.image
+                  ),
+                  fit: BoxFit.cover, 
+                  
+                ),
+                
+              )
+            ),
+            
+            Text(DealsProducts.title, 
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
+             const SizedBox(height: 5,), 
+             Text(DealsProducts.category, 
+             style: const TextStyle(color: Colors.grey),),
+             const SizedBox(height: 2,), 
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+             Text(DealsProducts.price,
+              style: const TextStyle(
+              color: Colors.black, 
+              fontWeight: FontWeight.w700, fontSize: 18),),
+             GestureDetector(
+             onTap:() {
+               
+             },
+               child: Container(
+               height: 30, 
+               width: 30,
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(80),
+                 color: Colors.black
+               ),
+               child: const Center(
+               child: Icon(Icons.add, color: Colors.white
+               
+               
+               )
+               ),
+               ),
+             )
+             ],)
+        
+          ]
+        ),
+    ]  )
     );
   }
 }

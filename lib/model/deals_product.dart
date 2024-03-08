@@ -13,7 +13,7 @@ class DealsProduct {
 }
 
 
- List <DealsProduct> DealsProducts = [
+ final List <DealsProduct> DealsProducts = [
   DealsProduct(
     image: "assets/products/newarrival/1.jpg",
     title: "Product 1",
