@@ -70,12 +70,20 @@ class popularPage extends StatelessWidget {
               }),
            ),
          ),
-         SizedBox(height: 10,), 
+         const SizedBox(height: 10,), 
           titleProducts(
         title: '30% Deals',
       ), 
       Flexible(child: 
       GridView.builder(
+         physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                crossAxisSpacing: 5.0,
+                mainAxisSpacing: 5.0,
+              ),
+
         itemCount: dealsProducts.length,
         itemBuilder: (_, index){
           return dealProductsCard(
