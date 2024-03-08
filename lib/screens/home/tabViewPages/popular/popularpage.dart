@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:stride/common/widgets/titleProducts.dart';
 import 'package:stride/model/newarrivalproducts.dart';
 import 'package:stride/model/productSlider.dart';
-
 
 import 'widgets/cards/new_arrival.dart';
 import 'widgets/cards/productCarousel.dart';
@@ -74,21 +74,15 @@ class popularPage extends StatelessWidget {
           titleProducts(
         title: '30% Deals',
       ), 
-      Container(
-        height: 150,
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(dealsProducts[0].image),
-                  fit: BoxFit.cover, 
-                )
-              ), 
-            ), 
-          ]
-        ),
-      ), 
+      Flexible(child: 
+      GridView.builder(
+        itemCount: dealsProducts.length,
+        itemBuilder: (_, index){
+          return dealProductsCard(
+            dealsProducts: dealsProducts[index],
+          );
+        }
+      )), 
       
        
 
@@ -99,3 +93,29 @@ class popularPage extends StatelessWidget {
 
 
 
+class dealProductsCard extends StatelessWidget {
+  const dealProductsCard({
+    Key? key,
+    required this.dealsProducts,
+  }) : super(key: key);
+
+final dealsProduct dealsProducts; 
+  @override
+  Widget build(BuildContext context, ) {
+    return Card(
+      child: Column( 
+        children: [
+          Container(
+            height: 150, 
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                dealsProducts.image; 
+              ),
+               fit: BoxFit.cover,  
+            )
+          )
+        ]
+      )
+    );
+  }
+}
