@@ -74,6 +74,21 @@ class popularPage extends StatelessWidget {
           titleProducts(
         title: '30% Deals',
       ), 
+      Container(
+        height: 150,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(dealsProducts[0].image),
+                  fit: BoxFit.cover, 
+                )
+              ), 
+            ), 
+          ]
+        ),
+      ), 
       
        
 
