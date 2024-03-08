@@ -8,8 +8,8 @@ import 'package:stride/model/newarrivalproducts.dart';
 import 'package:stride/model/productSlider.dart';
 
 
-import 'widgets/newArrivalProductCard.dart';
-import 'widgets/productCarouselCard.dart';
+import 'widgets/cards/new_arrival.dart';
+import 'widgets/cards/productCarousel.dart';
 
 class popularPage extends StatelessWidget {
   const popularPage({
