@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'lib\model\30%deals.dart';
+import 'package:stride/model/deals_product.dart';
+
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -84,10 +86,10 @@ class popularPage extends StatelessWidget {
                 mainAxisSpacing: 5.0,
               ),
 
-        itemCount: dealsProducts.length,
+        itemCount: DealsProducts.length,
         itemBuilder: (_, index){
           return dealProductsCard(
-            dealsProducts: dealsProducts[index],
+            DealsProducts: DealsProducts[index],
           );
         }
       )), 
@@ -103,11 +105,11 @@ class popularPage extends StatelessWidget {
 
 class dealProductsCard extends StatelessWidget {
   const dealProductsCard({
-    Key? key,
-    required this.dealsProducts,
+    Key? key, required this.DealsProducts,
+    
   }) : super(key: key);
 
-final dealsProduct dealsProducts; 
+final DealsProduct DealsProducts; 
   @override
   Widget build(BuildContext context, ) {
     return Card(
@@ -118,7 +120,7 @@ final dealsProduct dealsProducts;
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  dealsProducts.image
+                  DealsProducts.image
                 )
                 
               ),

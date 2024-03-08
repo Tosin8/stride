@@ -1,10 +1,10 @@
-class dealsProduct {
+class DealsProduct {
   String image; 
   String title; 
   String price; 
   String category; 
 
-  dealsProduct({
+  DealsProduct({
     required this.image,
     required this.title,
     required this.category,
@@ -13,32 +13,32 @@ class dealsProduct {
 }
 
 
- List <dealsProduct> dealsProducts = [
-  dealsProduct(
+ List <DealsProduct> DealsProducts = [
+  DealsProduct(
     image: "assets/products/newarrival/1.jpg",
     title: "Product 1",
     category: "Adidas",
     price: '200',
   ),
-  dealsProduct(
+  DealsProduct(
     image: "assets/products/newarrival/2.jpg",
     title: "Product 1",
     category: "Nike",
     price: '400',
   ),
-   dealsProduct(
+   DealsProduct(
     image: "assets/products/newarrival/3.jpg",
     title: "Product 1",
     category: "Jordan",
     price: '200',
   ),
-   dealsProduct(
+   DealsProduct(
     image: "assets/products/newarrival/4.jpg",
     title: "Product 1",
     category: "Adidas",
     price: '550',
   ),
-   dealsProduct(
+   DealsProduct(
     image: "assets/products/newarrival/5.jpg",
     title: "Product 1",
     category: 'Puma'
