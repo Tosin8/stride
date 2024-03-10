@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:stride/model/productSlider.dart';
 
 class CarouselDetails extends StatelessWidget {
@@ -23,9 +24,12 @@ final ProductSlider productSliders;
          onTap: () {
           Navigator.pop(context);
          }, 
-          child: const Icon(Icons.arrow_back_ios, color: Colors.white,)), 
-          actions: [
-            const Icon(Icons.favorite_border_outlined, color: Colors.white,), const SizedBox(width: 20,), 
+          child: const Icon(Icons.arrow_back_ios, 
+          color: Colors.white,)), 
+          actions: const [
+            Icon(Icons.favorite_border_outlined,
+             color: Colors.white,), 
+             SizedBox(width: 20,), 
           ],
       ), 
       DraggableScrollableSheet(
@@ -55,7 +59,10 @@ final ProductSlider productSliders;
                   ),
                 Text(productSliders.category, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 20),),
                 const SizedBox(height: 20,), 
-                Text(productSliders.description, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 20),
+                FadeInUp(
+                  curve: Curves.easeIn,
+                  child: Text(productSliders.description, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 20),
+                  ),
                 ),
                 const SizedBox(height: 20,), 
                 const Text('Color', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),), 
