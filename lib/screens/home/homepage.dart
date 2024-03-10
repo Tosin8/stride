@@ -35,9 +35,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           
           children:[
            
-            
-            main_body(tabController: _tabController), 
              const navBar(), 
+            main_body(tabController: _tabController), 
+            
             
          ] );
         }
@@ -58,55 +58,58 @@ class main_body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    
+    final double xOffset = 230; 
     return
    
-      Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          leading: GestureDetector(
-            child: 
-           
-            const Icon(Iconsax.menu),
-          ), 
-          actions: [
-            // IconButton(
-            //   onPressed: (){}, 
-            //   icon: Icon(Icons.notifications))
-            // ignore: sized_box_for_whitespace
-            Container(
-              width:20, height: 20,
-              child: Image.asset('assets/icons/bell.png')), 
-            const SizedBox(width: 10),
-          ],
-        ),
-        body: 
-          Padding(
-            padding:  const EdgeInsets.all(8.0),
-            child: ListView( 
-              children:  [
-               
-                const Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Text('Collection',
-                   style: TextStyle(
-                    fontSize: 25, 
-                    fontWeight: FontWeight.w500),),
-                ), 
-               
-                const productCarousel(), 
-                 
-                productTab(tabController: _tabController),
-                
-                 productTabContents(tabController: _tabController),
-                
-              ],
-            ),
+      Container(
+        transform: Matrix4.translationValues(xOffset, 0, 0),
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.transparent,
+            leading: GestureDetector(
+              child: 
+             
+              const Icon(Iconsax.menu),
+            ), 
+            actions: [
+              // IconButton(
+              //   onPressed: (){}, 
+              //   icon: Icon(Icons.notifications))
+              // ignore: sized_box_for_whitespace
+              Container(
+                width:20, height: 20,
+                child: Image.asset('assets/icons/bell.png')), 
+              const SizedBox(width: 10),
+            ],
           ),
-        
-    );
+          body: 
+            Padding(
+              padding:  const EdgeInsets.all(8.0),
+              child: ListView( 
+                children:  [
+                 
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text('Collection',
+                     style: TextStyle(
+                      fontSize: 25, 
+                      fontWeight: FontWeight.w500),),
+                  ), 
+                 
+                  const productCarousel(), 
+                   
+                  productTab(tabController: _tabController),
+                  
+                   productTabContents(tabController: _tabController),
+                  
+                ],
+              ),
+            ),
+          
+            ),
+      );
   }
 }
 
