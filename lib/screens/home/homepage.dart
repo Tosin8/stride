@@ -18,7 +18,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-final double maxSlide = 225.0; 
+
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   
  
