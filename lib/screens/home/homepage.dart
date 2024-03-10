@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'widgets/productCarousel.dart';
 import 'widgets/productTab.dart';
@@ -15,15 +16,48 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+final double maxSlide = 225.0; 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+ late  AnimationController animationController; 
 
   int _current = 0; 
   dynamic _selectdProduct = {}; 
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(
       length: 5, vsync: this);
+    return Stack(
+      
+      children:[
+        navBar(), 
+        
+        Transform(
+          transform: Matrix4.identity()
+          ..translate(maxSlide)
+          ..scale(0.7),
+          alignment: Alignment.centerLeft,
+          child: main_body(tabController: _tabController))
+     ] ); 
+    
+  }
+}
+
+class main_body extends StatelessWidget {
+  const main_body({
+    super.key,
+    required TabController tabController,
+  }) : _tabController = tabController;
+
+  final TabController _tabController;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -64,9 +98,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ],
           ),
         ),
-      ); 
-    
+      );
   }
 }
 
+
+class navBar extends StatelessWidget {
+  const navBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Colors.blue,
+      ),
+    );
+  }
+}
 
