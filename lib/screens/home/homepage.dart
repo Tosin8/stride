@@ -64,9 +64,9 @@ class main_body extends StatefulWidget {
 class _main_bodyState extends State<main_body> {
   @override
   Widget build(BuildContext context) {
-late double xOffset;
-  late double yOffset;
-    late double scaleFactor;
+late double xOffset = 0;
+  late double yOffset = 0;
+    late double scaleFactor = 1;
 
     @override 
 
@@ -75,22 +75,33 @@ void initState() {
   //closeDrawer(); 
 }
 
-void openDrawer() => setState((){
-xOffset = 230; 
-yOffset = 110;
-scaleFactor = 0.8; 
-});
+// void openDrawer() => setState((){
+// xOffset = 230; 
+// yOffset = 110;
+// scaleFactor = 0.8; 
+// });
 
-void closeDrawer() => setState((){
-  xOffset = 0; 
-  yOffset = 0;
-  scaleFactor = 1; 
-});
+// void closeDrawer() => setState((){
+//   xOffset = 0; 
+//   yOffset = 0;
+//   scaleFactor = 1; 
+// });
     
+
+    
+void tapDrawer() => setState((){
+  xOffset = xOffset == 0 ? 230 : 0; 
+  yOffset = yOffset == 0 ? 110 : 0; 
+  scaleFactor = scaleFactor == 1 ? 0.8 : 1;
+}); 
+
+bool _tapDrawer = false; 
     return
    
       Container(
-        transform: Matrix4.translationValues(xOffset, yOffset, 0)
+        transform: Matrix4.translationValues(
+          xOffset,
+           yOffset, 0)
         ..scale(scaleFactor),
         child: Scaffold(
           appBar: AppBar(
@@ -98,6 +109,7 @@ void closeDrawer() => setState((){
             automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
             leading: GestureDetector(
+              onTap: tapDrawer, 
               child: 
              
               const Icon(Iconsax.menu),
