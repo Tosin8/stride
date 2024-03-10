@@ -21,14 +21,16 @@ class HomeScreen extends StatefulWidget {
 final double maxSlide = 225.0; 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   
-
+ 
   int _current = 0; 
   dynamic _selectdProduct = {}; 
 
 
 
+
   @override
   Widget build(BuildContext context) {
+
     TabController _tabController = TabController(
       length: 5, vsync: this);
     return   Stack(
@@ -47,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
 
-class main_body extends StatelessWidget {
+class main_body extends StatefulWidget {
   const main_body({
     super.key,
     required TabController tabController,
@@ -56,13 +58,40 @@ class main_body extends StatelessWidget {
   final TabController _tabController;
 
   @override
-  Widget build(BuildContext context) {
+  State<main_body> createState() => _main_bodyState();
+}
 
-    final double xOffset = 230; 
+class _main_bodyState extends State<main_body> {
+  @override
+  Widget build(BuildContext context) {
+late double xOffset;
+  late double yOffset;
+    late double scaleFactor;
+
+    @override 
+
+void initState() {
+  super.initState();
+  //closeDrawer(); 
+}
+
+void openDrawer() => setState((){
+xOffset = 230; 
+yOffset = 110;
+scaleFactor = 0.8; 
+});
+
+void closeDrawer() => setState((){
+  xOffset = 0; 
+  yOffset = 0;
+  scaleFactor = 1; 
+});
+    
     return
    
       Container(
-        transform: Matrix4.translationValues(xOffset, 0, 0),
+        transform: Matrix4.translationValues(xOffset, yOffset, 0)
+        ..scale(scaleFactor),
         child: Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -100,9 +129,9 @@ class main_body extends StatelessWidget {
                  
                   const productCarousel(), 
                    
-                  productTab(tabController: _tabController),
+                  productTab(tabController: widget._tabController),
                   
-                   productTabContents(tabController: _tabController),
+                   productTabContents(tabController: widget._tabController),
                   
                 ],
               ),
