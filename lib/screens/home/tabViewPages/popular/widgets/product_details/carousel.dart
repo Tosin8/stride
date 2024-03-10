@@ -29,12 +29,12 @@ final ProductSlider productSliders;
           child: const Icon(Icons.arrow_back_ios, 
           color: Colors.white,)), 
           actions:  [
-            Icon(Icons.favorite_border_outlined,
+            const Icon(Icons.favorite_border_outlined,
              color: Colors.white,),
-             SizedBox(width: 10,), 
+             const SizedBox(width: 10,), 
              Stack(
               children: [
-               Icon(Icons.shopping_bag, color: Colors.white), 
+               const Icon(Icons.shopping_bag, color: Colors.white), 
                Positioned(
                  right: 0,
                  child: Container(
@@ -44,10 +44,12 @@ final ProductSlider productSliders;
                     color: Colors.black, 
                     borderRadius: BorderRadius.circular(30)
                   ),
+                  child: const Align(child: Text('1', 
+                  style: TextStyle(color: Colors.white, fontSize: 8),)),
                  ),
                )
           ]),  
-             SizedBox(width: 20,), 
+             const SizedBox(width: 20,), 
           ],
       ), 
       DraggableScrollableSheet(
@@ -87,7 +89,7 @@ final ProductSlider productSliders;
                   delay: const Duration(milliseconds: 1000),
                   child: const Text('Color', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),)), 
                 const SizedBox(height: 10,),
-                productColor(), 
+                const productColor(), 
                 const SizedBox(height: 10,),
                  FadeInLeft(
                   delay: const Duration(milliseconds: 1200),
@@ -110,7 +112,7 @@ final ProductSlider productSliders;
                               title: '43'
                             ), 
                           ],), 
-                           SizedBox(height: 15,), 
+                           const SizedBox(height: 15,), 
                            FadeInUp(
                             delay: const Duration(milliseconds: 1200),
                              child: Container(
@@ -120,7 +122,7 @@ final ProductSlider productSliders;
                                 color: Colors.black, 
                                 borderRadius: BorderRadius.circular(10)
                               ),
-                              child: Align(child: Text('Add to cart', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,)),
+                              child: const Align(child: Text('Add to cart', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,)),
                              ),
                            )
               ],

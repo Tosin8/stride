@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           //   icon: Icon(Icons.notifications))
           // ignore: sized_box_for_whitespace
           Container(
-            width:25, height: 25,
+            width:20, height: 20,
             child: Image.asset('assets/icons/bell.png')), 
           const SizedBox(width: 10),
         ],
