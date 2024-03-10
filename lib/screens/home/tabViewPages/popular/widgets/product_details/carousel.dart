@@ -16,9 +16,7 @@ final ProductSlider productSliders;
         children: [
           Hero(
             tag: productSliders.image,
-            child: Transform.rotate(
-              angle: 0.7,
-              child: Image.asset(productSliders.image, fit: BoxFit.cover))),
+            child: Image.asset(productSliders.image, fit: BoxFit.cover)),
      AppBar(
       backgroundColor: Colors.transparent,
         leading: GestureDetector(

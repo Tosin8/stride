@@ -21,14 +21,14 @@ List<ProductSlider> productSliders = [
   
   ProductSlider(
     image: "assets/products/slider/2.jpg",
-    title: "Product 1",
+    title: "Adidas Ultraboost 21",
     category: "Adidas",
     price: 200,
      description: 'The New Balance Fresh Foam 1080v12 is a premium neutral running shoe designed for long-distance training. Featuring Fresh Foam X midsole technology, it delivers superior cushioning and energy return to propel you through every stride. The engineered mesh upper offers breathable comfort, while the blown rubber outsole provides durability and grip on various surfaces. Experience a smooth, responsive ride that keeps you going mile after mile.',
   ), 
   ProductSlider(
     image: "assets/products/slider/3.jpg",
-    title: "Product 1",
+    title: "Adidas CrazyTrain",
     category: "Adidas",
     price:140, 
     description: 'Conquer the trails with the Merrell Moab 3 Mid Waterproof Hiking Boots. Crafted with a waterproof membrane and durable leather and mesh uppers, these boots keep your feet dry and protected. The Vibram® outsole ensures excellent traction on rugged terrain, while the molded nylon arch shank and air cushion heel absorb shock for all-day comfort. With a supportive fit and versatile style, these boots are your reliable companions for outdoor adventures.',
