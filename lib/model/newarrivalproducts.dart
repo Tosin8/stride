@@ -15,28 +15,31 @@ class newArrivalProduct {
 final List newArrivalProducts = [
   newArrivalProduct(
     image: "assets/products/newarrival/1.jpg",
-    title: "Product 1",
+    title: "Air Max 270",
     category: "Adidas",
     price: '200',
-  ), newArrivalProduct(
+  ),
+   newArrivalProduct(
     image: "assets/products/newarrival/2.jpg",
-    title: "Product 1",
+    title: "Phantom Vision",
     category: "Nike",
     price: '400',
-  ), newArrivalProduct(
+  ),
+   newArrivalProduct(
     image: "assets/products/newarrival/3.jpg",
-    title: "Product 1",
+    title: "Court AirZoom",
     category: "Jordan",
     price: '200',
-  ), newArrivalProduct(
+  ), 
+  newArrivalProduct(
     image: "assets/products/newarrival/4.jpg",
-    title: "Product 1",
+    title: "Zoom Pegasus",
     category: "Adidas",
     price: '550',
   ),
    newArrivalProduct(
     image: "assets/products/newarrival/5.jpg",
-    title: "Product 1",
+    title: "Puma Kyrie",
     category: 'Puma'
     ,price: '200',
    ),

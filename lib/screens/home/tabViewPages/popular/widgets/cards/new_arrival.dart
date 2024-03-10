@@ -13,22 +13,22 @@ final newArrivalProduct newArrivalProducts;
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), 
           color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: 
-                Colors.black.withOpacity(0.2), 
-                spreadRadius: 0.4, 
-                offset: const Offset(1, 1)
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: 
+          //       Colors.black.withOpacity(0.2), 
+          //       spreadRadius: 0.4, 
+          //       offset: const Offset(1, 1)
               
-            )
-          ]
+          //   )
+          // ]
         ),
          
         
          child: Row(
           children: [
             CircleAvatar(
-              radius: 45, 
+              radius: 40, 
               backgroundColor: Colors.black,
               backgroundImage: AssetImage(newArrivalProducts.image),
             ), 
@@ -39,7 +39,7 @@ final newArrivalProduct newArrivalProducts;
               children: [
                 Text(newArrivalProducts.title,
                  style: const TextStyle(
-                  fontSize: 18, 
+                  fontSize: 15, 
                   fontWeight: FontWeight.w500, 
                   ),), 
                 Text(newArrivalProducts.category), 
