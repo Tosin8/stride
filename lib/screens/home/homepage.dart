@@ -27,7 +27,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
+    animationController = AnimationController(vsync: this,
+     duration: const Duration(milliseconds: 250), 
+    ); 
   }
+
+  void toggle() => animationController.isDismissed ? animationController.forward() : animationController.reverse(); 
+
+  
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(
@@ -35,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Stack(
       
       children:[
-        navBar(), 
+        const navBar(), 
         
         Transform(
           transform: Matrix4.identity()
