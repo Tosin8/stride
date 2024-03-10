@@ -1,6 +1,8 @@
 
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:stride/model/productSlider.dart';
 
@@ -26,9 +28,25 @@ final ProductSlider productSliders;
          }, 
           child: const Icon(Icons.arrow_back_ios, 
           color: Colors.white,)), 
-          actions: const [
+          actions:  [
             Icon(Icons.favorite_border_outlined,
-             color: Colors.white,), 
+             color: Colors.white,),
+             SizedBox(width: 10,), 
+             Stack(
+              children: [
+               Icon(Icons.shopping_bag, color: Colors.white), 
+               Positioned(
+                 right: 0,
+                 child: Container(
+                  height: 15, 
+                  width: 15,
+                  decoration: BoxDecoration(
+                    color: Colors.black, 
+                    borderRadius: BorderRadius.circular(30)
+                  ),
+                 ),
+               )
+          ]),  
              SizedBox(width: 20,), 
           ],
       ), 
@@ -65,11 +83,15 @@ final ProductSlider productSliders;
                   ),
                 ),
                 const SizedBox(height: 20,), 
-                const Text('Color', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),), 
+                FadeInLeft(
+                  delay: const Duration(milliseconds: 1000),
+                  child: const Text('Color', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),)), 
                 const SizedBox(height: 10,),
                 productColor(), 
                 const SizedBox(height: 10,),
-                 const Text('Size', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),), 
+                 FadeInLeft(
+                  delay: const Duration(milliseconds: 1200),
+                  child: const Text('Size', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),)), 
                         const SizedBox(height: 10,),
                         const Row(
                           children: [
@@ -89,14 +111,17 @@ final ProductSlider productSliders;
                             ), 
                           ],), 
                            SizedBox(height: 15,), 
-                           Container(
-                            width: double.infinity, 
-                            height: 50, 
-                            decoration: BoxDecoration(
-                              color: Colors.black, 
-                              borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Align(child: Text('Add to cart', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,)),
+                           FadeInUp(
+                            delay: const Duration(milliseconds: 1200),
+                             child: Container(
+                              width: double.infinity, 
+                              height: 50, 
+                              decoration: BoxDecoration(
+                                color: Colors.black, 
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Align(child: Text('Add to cart', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,)),
+                             ),
                            )
               ],
               ),
