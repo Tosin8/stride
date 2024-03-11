@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stride/model/deals_product.dart';
 
@@ -36,8 +37,13 @@ final DealsProduct DealsProducts;
                 )
               ),
               
-              Text(DealsProducts.title, 
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
+              Expanded(
+                child: Column(
+                children :[ Text(DealsProducts.title, 
+                style: const TextStyle(
+                  fontSize: 18, 
+                fontWeight: FontWeight.w700),),
+              
                const SizedBox(height: 5,), 
                Text(DealsProducts.category, 
                style: const TextStyle(color: Colors.grey),),
@@ -70,7 +76,7 @@ final DealsProduct DealsProducts;
                )
                ],)
           
-            ]
+            ]))]
           ),
        );
     
