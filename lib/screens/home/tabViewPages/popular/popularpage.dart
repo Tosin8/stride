@@ -87,8 +87,8 @@ class popularPage extends StatelessWidget {
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 70.0,
+                  crossAxisSpacing: 24.0,
+                  mainAxisSpacing: 80.0,
                 ),
         
           itemCount: DealsProducts.length,
