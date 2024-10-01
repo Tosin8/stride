@@ -89,12 +89,10 @@ class splashButton extends StatelessWidget {
       duration: const Duration(milliseconds: 1000),
       child: GestureDetector( 
         onTap:() {
-          // Navigator.push(context, 
-          // MaterialPageRoute(builder: (context) => const HomeScreen())
-          // );
           Navigator.push(context, 
-          PageTransition(
-            type: PageTransitionType.rightToLeft, child: const HomeScreen()));
+          MaterialPageRoute(builder: (context) => const HomeScreen())
+          );
+        
         },
         child: Container(
           height: 50, width: 200,
