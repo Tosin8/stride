@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride/profile.dart';
 import 'package:stride/screens/home/homepage.dart';
+import 'package:stride/utils/colors.dart';
 import 'package:stride/utils/helpers_function.dart';
 
 import 'store.dart';
