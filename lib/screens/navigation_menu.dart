@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride/profile.dart';
 import 'package:stride/screens/home/homepage.dart';
+import 'package:stride/utils/helpers_function.dart';
 
 import 'store.dart';
 import 'wishlist.dart';
@@ -16,7 +17,7 @@ class NavigationMenu extends StatelessWidget {
   Widget build(BuildContext  context) {
 
     final controller = Get.put(NavigationController()); 
-    final darkMode = BHelperFunctions.isDarkMode(context);
+   final darkMode = BHelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(
         () =>
