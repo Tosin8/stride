@@ -1,8 +1,9 @@
 
 import 'package:get/get.dart';
-import 'package:qwibix/utils/http/network_manager.dart';
+
 
 import '../features/authentication/controllers/login/login_controller.dart';
+import '../utils/http/network_manager.dart';
 
 class GeneralBindings extends Bindings {
   @override
