@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:stride/data/repositories/authentication/authentication_repository.dart';
 import 'package:stride/data/repositories/user/user_repository.dart';
 import 'package:stride/features/authentication/screens/login/login.dart';
+import 'package:stride/screens/profile/widget.profileuser/re_authenticate_user_login_form.dart';
 import 'package:stride/utils/constants/image_strings.dart';
 import 'package:stride/utils/constants/sizes.dart';
 import 'package:stride/utils/http/network_manager.dart';

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-;
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stride/utils/colors.dart';
 import 'package:stride/utils/constants/sizes.dart';
