@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/helpers/helper_functions.dart';
+
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/helpers/helpers_function.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({

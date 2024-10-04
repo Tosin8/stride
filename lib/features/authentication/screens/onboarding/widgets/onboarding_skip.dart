@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:qwibix/features/authentication/controllers/onboarding/onboarding_controller.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/device/device_utlity.dart';
+
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/device/device_utlity.dart';
+
+import '../../../controllers/onboarding/onboarding_controller.dart';
 
 class OnBoardingSkip extends StatelessWidget {
   const OnBoardingSkip({

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/constants/text_strings.dart';
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/constants/text_strings.dart';
+
 
 import '../../../../../utils/constants/image_strings.dart';
 

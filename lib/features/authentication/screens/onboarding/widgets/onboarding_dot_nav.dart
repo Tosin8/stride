@@ -1,11 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:qwibix/features/authentication/controllers/onboarding/onboarding_controller.dart';
-import 'package:qwibix/utils/constants/colors.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/device/device_utlity.dart';
-import 'package:qwibix/utils/helpers/helper_functions.dart';
+;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:stride/utils/colors.dart';
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/helpers/helpers_function.dart';
+
+import '../../../../../utils/device/device_utlity.dart';
+import '../../../controllers/onboarding/onboarding_controller.dart';
 
 class OnBoardingDotNavigation extends StatelessWidget {
   const OnBoardingDotNavigation({

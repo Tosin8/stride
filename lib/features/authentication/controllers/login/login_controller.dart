@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:qwibix/common/widgets/loaders/loaders.dart';
-import 'package:qwibix/data/repositories/authentication/authentication_repository.dart';
-import 'package:qwibix/utils/constants/image_strings.dart';
-import 'package:qwibix/utils/http/network_manager.dart';
-import 'package:qwibix/utils/popups/full_screen_loader.dart';
+
+import 'package:stride/data/repositories/authentication/authentication_repository.dart';
+import 'package:stride/utils/constants/image_strings.dart';
+import 'package:stride/utils/http/network_manager.dart';
+import 'package:stride/utils/loaders/loaders.dart';
+import 'package:stride/utils/popups/full_screen_loader.dart';
 
 import '../../../personalization/controllers/user_controller.dart';
 

@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qwibix/features/authentication/controllers/onboarding/onboarding_controller.dart';
-import 'package:qwibix/features/authentication/screens/onboarding/widgets/onboarding_dot_nav.dart';
 
 
 
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/text_strings.dart';
+import '../../controllers/onboarding/onboarding_controller.dart';
+import 'widgets/onboarding_dot_nav.dart';
 import 'widgets/onboarding_next_btn.dart';
 import 'widgets/onboarding_page.dart';
 import 'widgets/onboarding_skip.dart';

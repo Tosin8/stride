@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:qwibix/features/authentication/controllers/onboarding/onboarding_controller.dart';
-import 'package:qwibix/utils/constants/colors.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/device/device_utlity.dart';
-import 'package:qwibix/utils/helpers/helper_functions.dart';
+
+import 'package:stride/features/authentication/controllers/onboarding/onboarding_controller.dart';
+import 'package:stride/utils/colors.dart';
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/device/device_utlity.dart';
+import 'package:stride/utils/helpers/helpers_function.dart';
 
 class OnBoardingNextBtn extends StatelessWidget {
   const OnBoardingNextBtn({

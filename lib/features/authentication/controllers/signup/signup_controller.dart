@@ -1,15 +1,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qwibix/common/widgets/loaders/loaders.dart';
-import 'package:qwibix/data/repositories/authentication/authentication_repository.dart';
-import 'package:qwibix/data/repositories/user/user_repository.dart';
-import 'package:qwibix/features/authentication/screens/signup/verify_email.dart';
-import 'package:qwibix/utils/constants/image_strings.dart';
 
+import 'package:stride/data/repositories/authentication/authentication_repository.dart';
+import 'package:stride/utils/constants/image_strings.dart';
+import 'package:stride/utils/loaders/loaders.dart';
+
+import '../../../../data/repositories/user/user_repository.dart';
 import '../../../../utils/http/network_manager.dart';
 import '../../../../utils/popups/full_screen_loader.dart';
-import '../../../personalization/models/user_model.dart';
+
+import '../../screens/signup/verify_email.dart';
 
 class SignupController extends GetxController{
   static SignupController get instance => Get.find(); 

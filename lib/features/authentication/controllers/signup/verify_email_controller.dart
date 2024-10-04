@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:qwibix/common/widgets/loaders/loaders.dart';
-import 'package:qwibix/common/widgets/success_screen/success_screen.dart';
-import 'package:qwibix/data/repositories/authentication/authentication_repository.dart';
-import 'package:qwibix/utils/constants/image_strings.dart';
-import 'package:qwibix/utils/constants/text_strings.dart';
+
+import 'package:stride/data/repositories/authentication/authentication_repository.dart';
+import 'package:stride/utils/common/success_screen/success_screen.dart';
+import 'package:stride/utils/constants/image_strings.dart';
+import 'package:stride/utils/constants/text_strings.dart';
+import 'package:stride/utils/loaders/loaders.dart';
 
 class VerifyEmailController extends GetxController{
   static VerifyEmailController get instance => Get.find();

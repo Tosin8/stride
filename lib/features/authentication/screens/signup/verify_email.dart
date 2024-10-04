@@ -3,21 +3,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qwibix/data/repositories/authentication/authentication_repository.dart';
-import 'package:qwibix/features/authentication/controllers/signup/verify_email_controller.dart';
-import 'package:qwibix/utils/constants/image_strings.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/constants/text_strings.dart';
-import 'package:qwibix/utils/helpers/helper_functions.dart';
+
+import 'package:stride/data/repositories/authentication/authentication_repository.dart';
+import 'package:stride/features/authentication/controllers/signup/verify_email_controller.dart';
+import 'package:stride/utils/constants/image_strings.dart';
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/constants/text_strings.dart';
+import 'package:stride/utils/helpers/helpers_function.dart';
 
 
 
 
 class VerifyEmailScreen extends StatelessWidget {
   const VerifyEmailScreen({
-    Key? key,
+    super.key,
     this.email,
-  }) : super(key: key);
+  });
 
 final String? email; 
   @override

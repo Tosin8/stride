@@ -1,11 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qwibix/features/authentication/controllers/signup/signup_controller.dart';
-import 'package:qwibix/utils/constants/colors.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/constants/text_strings.dart';
-import 'package:qwibix/utils/helpers/helper_functions.dart';
+
+import 'package:stride/utils/colors.dart';
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/constants/text_strings.dart';
+import 'package:stride/utils/helpers/helpers_function.dart';
+
+import '../../../controllers/signup/signup_controller.dart';
 
 class BTermsAndConditionCheckbox extends StatelessWidget {
   const BTermsAndConditionCheckbox({
