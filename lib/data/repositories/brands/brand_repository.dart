@@ -35,28 +35,28 @@
 
 
 // chatgpt
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:qwibix/features/shop/models/brand_model.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:qwibix/features/shop/models/brand_model.dart';
 
-class BrandRepository {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+// class BrandRepository {
+//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Fetch all brands from Firestore
-  Future<List<BrandModel>> getAllBrands() async {
-    try {
-      // Access the 'brands' collection from Firestore
-      final QuerySnapshot snapshot = await _firestore.collection('Brands').get();
+//   // Fetch all brands from Firestore
+//   Future<List<BrandModel>> getAllBrands() async {
+//     try {
+//       // Access the 'brands' collection from Firestore
+//       final QuerySnapshot snapshot = await _firestore.collection('Brands').get();
       
-      // Map Firestore documents to BrandModel
-      return snapshot.docs.map((doc) {
-        print("Fetched brand document: ${doc.data()}");
+//       // Map Firestore documents to BrandModel
+//       return snapshot.docs.map((doc) {
+//         print("Fetched brand document: ${doc.data()}");
 
-        // Convert Firestore document to BrandModel
-        return BrandModel.fromJson(doc.data() as Map<String, dynamic>);
-      }).toList();
-    } catch (e) {
-      print("Error fetching brands from Firestore: $e");
-      rethrow; // Rethrow the error to be caught in the controller
-    }
-  }
-}
+//         // Convert Firestore document to BrandModel
+//         return BrandModel.fromJson(doc.data() as Map<String, dynamic>);
+//       }).toList();
+//     } catch (e) {
+//       print("Error fetching brands from Firestore: $e");
+//       rethrow; // Rethrow the error to be caught in the controller
+//     }
+//   }
+// }

@@ -5,12 +5,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:qwibix/data/repositories/authentication/authentication_repository.dart';
-import 'package:qwibix/utils/exceptions/platform_exception.dart';
+
+import 'package:stride/utils/exceptions/platform_exception.dart';
 
 import '../../../features/personalization/models/user_model.dart';
 import '../../../utils/exceptions/firebase_exception.dart';
-import '../../../utils/exceptions/format_exception.dart'; 
+import '../../../utils/exceptions/format_exception.dart';
+import '../authentication/authentication_repository.dart'; 
 
 class UserRepository extends GetxController{
   static UserRepository get instance => Get.find();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:stride/data/repositories/authentication/authentication_repository.dart';
+import 'package:stride/features/personalization/models/user_model.dart';
 import 'package:stride/utils/constants/image_strings.dart';
 import 'package:stride/utils/loaders/loaders.dart';
 

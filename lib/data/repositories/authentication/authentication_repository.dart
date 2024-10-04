@@ -6,16 +6,17 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:qwibix/data/repositories/user/user_repository.dart';
-import 'package:qwibix/features/authentication/screens/login/login.dart';
-import 'package:qwibix/features/authentication/screens/onboarding/onboarding.dart';
-import 'package:qwibix/features/authentication/screens/signup/verify_email.dart';
-import 'package:qwibix/navigation_menu.dart';
-import 'package:qwibix/utils/exceptions/firebase_exception.dart';
-import 'package:qwibix/utils/exceptions/format_exception.dart';
-import 'package:qwibix/utils/exceptions/platform_exception.dart';
-import 'package:qwibix/utils/local_storage/storage_utility.dart';
+import 'package:stride/data/repositories/user/user_repository.dart';
 
+import 'package:stride/utils/exceptions/firebase_exception.dart';
+import 'package:stride/utils/exceptions/format_exception.dart';
+import 'package:stride/utils/exceptions/platform_exception.dart';
+import 'package:stride/utils/local_storage/storage_utility.dart';
+
+import '../../../features/authentication/screens/login/login.dart';
+import '../../../features/authentication/screens/onboarding/onboarding.dart';
+import '../../../features/authentication/screens/signup/verify_email.dart';
+import '../../../screens/navigation_menu.dart';
 import '../../../utils/exceptions/firebase_auth_exception.dart';
 
 class AuthenticationRepository extends GetxController{

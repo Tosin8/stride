@@ -1,10 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:qwibix/common/styles/spacing_styles.dart';
-import 'package:qwibix/utils/constants/sizes.dart';
-import 'package:qwibix/utils/constants/text_strings.dart';
-import 'package:qwibix/utils/helpers/helper_functions.dart';
+
+import 'package:stride/utils/common/styles/spacing_styles.dart';
+import 'package:stride/utils/constants/sizes.dart';
+import 'package:stride/utils/constants/text_strings.dart';
+import 'package:stride/utils/helpers/helpers_function.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({super.key, 
