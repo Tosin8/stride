@@ -43,14 +43,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: controller.email,
                       validator: (value) => BValidator.validateEmail(value),
                       keyboardType: TextInputType.emailAddress,
+                      
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Iconsax.direct_right),
                         hintText: 'example@host.com',
                         hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
                         labelText: 'Email',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)) 
+                        ),
                       ),
                     ),
+                    const SizedBox( height: 20), 
                     // Password
                     Obx(
                       () => TextFormField(
@@ -69,9 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ? Iconsax.eye_slash
                                 : Iconsax.eye),
                           ),
+                            border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)) 
+                        ),
                         ),
                       ),
                     ),
+                         const SizedBox( height: 20), 
                     // Remember Me and Forgot Password
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,25 +102,43 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             Get.to(() => const Forgotpwd());
                           },
-                          child: const Text('ForgetPassword'),
+                          child: const Text('Forget Password?'),
                         ),
                       ],
                     ),
+                         const SizedBox( height: 20), 
                     // Sign In Button
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          onPressed: () => controller.emailAndPasswordSignIn(),
-                          child: const Text('Sign In')),
-                    ),
+                    // SizedBox(
+                    //   width: double.infinity,
+                    //   child: ElevatedButton(
+                    //       onPressed: () => controller.emailAndPasswordSignIn(),
+                    //       child: const Text('Sign In')),
+                    // ),
+GestureDetector( 
+  onTap: () => controller.emailAndPasswordSignIn(),
+  child:  Container( 
+    height: 50 , width: double.infinity,  
+    decoration: BoxDecoration(color: Colors.black, 
+    borderRadius: BorderRadius.circular(10)
+    ), 
+    child: const Align(child: Text('Sign In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 20),),),
+  ),
+), 
+
                     // Create Account
-                    SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton(
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Don\'t have an account?'),
+                        const SizedBox(width: 10),
+                        TextButton(
                             onPressed: () {
                               Get.to(() => const Signup());
                             },
-                            child: const Text('Create Account'))),
+                            child: const Text('Create Account')),
+                      ],
+                    ),
                   ],
                 ),
               )

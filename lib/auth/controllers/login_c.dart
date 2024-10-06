@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../utils/http/network_manager.dart';
 import '../../utils/widgets/constants/images_c.dart';
 import '../../utils/widgets/popups/full_screen.dart';
+import '../../utils/widgets/popups/loaders.dart';
 
 class LoginController extends GetxController {
   // Variables
@@ -51,8 +52,17 @@ class LoginController extends GetxController {
         localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
+
+        // Remove loader
+      BFullScreenLoader.stopLoading();
+      email.clear();
+      password.clear();
+
+      // Redirect
+      AuthenticationRepository.instance.screenRedirect();
+      Get.delete<LoginController>();
     } catch (e) {
-      print('error: $e');
+      BLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       BFullScreenLoader.stopLoading();
     }
   }
