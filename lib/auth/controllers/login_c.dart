@@ -11,24 +11,27 @@ class LoginController extends GetxController {
   final rememberMe = false.obs;
   final hidePassword = true.obs;
   final localStorage = GetStorage();
- final email =  TextEditingController();
- final password = TextEditingController(); 
-  
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  //final userController = Get.put(UserController());
- 
+  final email = TextEditingController();
+  final password = TextEditingController();
 
-@override 
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+
+  @override
   void onInit() {
-    
-    email.text = localStorage.read('REMEMBER_ME_EMAIL') ;
-  
-    password.text = localStorage.read('REMEMBER_ME_PASSWORD') ;
-    super.onInit(); 
+    // Assign empty string if localStorage reads null to avoid null errors
+    email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
+    password.text = localStorage.read('REMEMBER_ME_PASSWORD') ?? '';
+    super.onInit();
   }
 
   // Email and Password SignIn
   Future<void> emailAndPasswordSignIn() async {
+    // Form validation - Ensure the form is valid before doing anything else
+    if (!loginFormKey.currentState!.validate()) {
+      BFullScreenLoader.stopLoading();
+      return;
+    }
+
     try {
       // Start loading
       BFullScreenLoader.openLoadingDialog('Logging you in...', SImages.docerAnimation);
@@ -39,22 +42,18 @@ class LoginController extends GetxController {
         BFullScreenLoader.stopLoading();
         return;
       }
+
+      // Perform the login request here...
+      // (Assumed that you handle the login process with API after this point)
+
+      // Save data if remember me is selected
+      if (rememberMe.value) {
+        localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
+        localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
+      }
     } catch (e) {
       print('error: $e');
       BFullScreenLoader.stopLoading();
-      
-
-      // Form validation
-      if (!loginFormKey.currentState!.validate()) {
-        BFullScreenLoader.stopLoading();
-        return;
-      }
-
-    // save data if remember me is selected
-    if (rememberMe.value) {
-      localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
-      localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
-    }
     }
   }
 }
