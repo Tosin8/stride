@@ -1,6 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:stride/screens/shop/home/home.dart';
+import 'package:get/get.dart';
+
+import '../auth/login/login.dart';
+
 
 
 class SplashScreen
@@ -89,9 +92,7 @@ class splashButton extends StatelessWidget {
       duration: const Duration(milliseconds: 1000),
       child: GestureDetector( 
         onTap:() {
-          Navigator.push(context, 
-          MaterialPageRoute(builder: (context) => const HomeScreen())
-          );
+          Get.to(() => const LoginScreen());
         
         },
         child: Container(
