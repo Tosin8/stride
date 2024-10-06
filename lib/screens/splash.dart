@@ -63,7 +63,7 @@ class SplashScreen
                   textAlign: TextAlign.center,),
                 ),
                 const SizedBox(height: 40,), 
-                const splashButton(), 
+                const SplashButton(), 
                 const SizedBox(height: 60,), 
         
         
@@ -79,8 +79,8 @@ class SplashScreen
   }
 }
 
-class splashButton extends StatelessWidget {
-  const splashButton({
+class SplashButton extends StatelessWidget {
+  const SplashButton({
     super.key,
   });
 
