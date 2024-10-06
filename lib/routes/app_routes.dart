@@ -1,7 +1,8 @@
 
 
 import 'package:get/get.dart';
-import 'package:stride/screens/home/homepage.dart';
+import 'package:stride/routes/home/home.dart';
+
 
 import 'routes.dart';
 
