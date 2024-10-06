@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:stride/routes/home/home.dart';
+import 'package:stride/screens/shop/home/home.dart';
 
 
 class SplashScreen
