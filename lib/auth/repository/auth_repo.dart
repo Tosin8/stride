@@ -6,17 +6,21 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:qwibix/data/repositories/user/user_repository.dart';
-import 'package:qwibix/features/authentication/screens/login/login.dart';
-import 'package:qwibix/features/authentication/screens/onboarding/onboarding.dart';
-import 'package:qwibix/features/authentication/screens/signup/verify_email.dart';
-import 'package:qwibix/navigation_menu.dart';
-import 'package:qwibix/utils/exceptions/firebase_exception.dart';
-import 'package:qwibix/utils/exceptions/format_exception.dart';
-import 'package:qwibix/utils/exceptions/platform_exception.dart';
-import 'package:qwibix/utils/local_storage/storage_utility.dart';
+import 'package:stride/screens/splash.dart';
 
-import '../../../utils/exceptions/firebase_auth_exception.dart';
+
+
+import 'package:stride/utils/exceptions/format_exceptions.dart';
+import 'package:stride/utils/exceptions/platform_exceptions.dart';
+
+
+import '../../screens/navigation_menu.dart';
+import '../../utils/exceptions/firebase_auth_exceptions.dart';
+import '../../utils/exceptions/firebase_exception.dart';
+import '../../utils/storage/storage_utility.dart';
+import '../forms/login.dart';
+import '../forms/verify.dart';
+import 'user_repo.dart';
 
 class AuthenticationRepository extends GetxController{
   static AuthenticationRepository get instance => Get.find();
@@ -57,7 +61,7 @@ class AuthenticationRepository extends GetxController{
 
         // if the user's email  is verified, nav. to the nav.menu. 
         
-        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email,));
+        Get.offAll(() => VerifyMail(email: _auth.currentUser?.email,));
       }
     } else {
       // local storage
@@ -66,7 +70,7 @@ class AuthenticationRepository extends GetxController{
     // check if it's the first time launching the app - using local storage. 
     deviceStorage.read('IsFirstTime') != true ?
      Get.offAll(() => const LoginScreen()) : 
-     Get.offAll(() => const OnBoardingScreen());
+     Get.offAll(() => const SplashScreen());
   }
 
     }
@@ -75,7 +79,7 @@ class AuthenticationRepository extends GetxController{
 //   print('=============== GET STORAGE Auth Repo ======='); 
 //   print(deviceStorage.read('IsFirstTime'));
 // }
-
+ 
    
 
   /* _____________ Email and Password Validation _____________ */

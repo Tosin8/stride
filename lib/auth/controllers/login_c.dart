@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stride/auth/repository/auth_repo.dart';
 
 import '../../utils/http/network_manager.dart';
 import '../../utils/widgets/constants/images_c.dart';
