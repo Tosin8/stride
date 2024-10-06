@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317266133107",
+    "project_id": "stride-79187",
+    "storage_bucket": "stride-79187.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317266133107:android:5d4e17187cde659d356a06",
+        "android_client_info": {
+          "package_name": "com.example.stride"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTJkK4cLP6x-ckVOP34vj6p4E-gpmNVuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
