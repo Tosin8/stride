@@ -13,64 +13,66 @@ class SplashScreen
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: 
-      FadeIn(
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.easeInOutQuad,
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/splash.jpg'),
-          fit: BoxFit.cover), 
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.black.withOpacity(0.7),  
-          
-                  Colors.transparent, 
-                ], 
-                begin: Alignment.bottomCenter), 
-            ),
-            child: 
-             Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
+    return SafeArea(
+      child: Scaffold(
+        body: 
         FadeIn(
-          delay: const Duration(milliseconds: 1000),
-          duration: const Duration(milliseconds: 1000),
-          child: const Text('Stride',
-          style: TextStyle(
-            color: Colors.white, 
-            fontSize: 40, 
-            fontFamily: 'Maturascript'),),
-        ), 
-          const SizedBox(height: 10,), 
-          const Divider(
-            height: 3, thickness: 2,indent: 100, endIndent: 100,
-            color: Colors.white,  
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.easeInOutQuad,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/splash.jpg'),
+            fit: BoxFit.cover), 
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black.withOpacity(0.7),  
+            
+                    Colors.transparent, 
+                  ], 
+                  begin: Alignment.bottomCenter), 
+              ),
+              child: 
+               Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+          FadeIn(
+            delay: const Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
+            child: const Text('Stride',
+            style: TextStyle(
+              color: Colors.white, 
+              fontSize: 40, 
+              fontFamily: 'Maturascript'),),
           ), 
-          const SizedBox(height: 20,), 
-                FadeInUp(
-                  curve: Curves.easeInBack,
-                  delay: const Duration(milliseconds: 1500), 
-                  duration: const Duration(milliseconds: 1000),
-                  child: const Text('Thousands of Shoe Styles\nfrom Top Brands', style: TextStyle(color: Colors.white, fontSize: 20),
-                  textAlign: TextAlign.center,),
-                ),
-                const SizedBox(height: 40,), 
-                const SplashButton(), 
-                const SizedBox(height: 60,), 
-        
-        
-        
-        
-                
-              ],
+            const SizedBox(height: 10,), 
+            const Divider(
+              height: 3, thickness: 2,indent: 100, endIndent: 100,
+              color: Colors.white,  
+            ), 
+            const SizedBox(height: 20,), 
+                  FadeInUp(
+                    curve: Curves.easeInBack,
+                    delay: const Duration(milliseconds: 1500), 
+                    duration: const Duration(milliseconds: 1000),
+                    child: const Text('Thousands of Shoe Styles\nfrom Top Brands', style: TextStyle(color: Colors.white, fontSize: 20),
+                    textAlign: TextAlign.center,),
+                  ),
+                  const SizedBox(height: 40,), 
+                  const SplashButton(), 
+                  const SizedBox(height: 60,), 
+          
+          
+          
+          
+                  
+                ],
+              ),
             ),
           ),
         ),
