@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../utils/http/network_manager.dart';
+import '../../utils/widgets/constants/images_c.dart';
+import '../../utils/widgets/popups/full_screen.dart';
+
 class LoginController extends GetxController {
   // Variables
   final rememberMe = false.obs;
@@ -27,7 +31,7 @@ class LoginController extends GetxController {
   Future<void> emailAndPasswordSignIn() async {
     try {
       // Start loading
-      BFullScreenLoader.openLoadingDialog('Logging you in...', BImages.docerAnimation);
+      BFullScreenLoader.openLoadingDialog('Logging you in...', SImages.docerAnimation);
 
       // Check internet connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -35,6 +39,10 @@ class LoginController extends GetxController {
         BFullScreenLoader.stopLoading();
         return;
       }
+    } catch (e) {
+      print('error: $e');
+      BFullScreenLoader.stopLoading();
+      
 
       // Form validation
       if (!loginFormKey.currentState!.validate()) {

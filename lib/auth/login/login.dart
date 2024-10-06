@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stride/auth/controllers/login_c.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return  SafeArea(
       child: Scaffold(
         body: Container( 
@@ -27,7 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),), 
                 const SizedBox(height: 20,),  
           
-               Form(child: Column(
+               Form(
+                key: controller.loginFormKey,
+                child: Column(
                 children: [
               
                   TextFormField(
