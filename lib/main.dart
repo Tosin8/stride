@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:stride/firebase_options.dart';
 
-import 'package:stride/screens/splash.dart';
 
 import 'auth/repository/auth_repo.dart';
 import 'bindings/general_binding.dart';
@@ -13,7 +12,7 @@ import 'routes/app_routes.dart';
 
 
 
-void main() async { 
+Future <void> main() async { 
 /// widgets binding 
   
   final WidgetsBinding widgetsBinding = 

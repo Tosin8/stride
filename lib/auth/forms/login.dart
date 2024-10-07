@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stride/auth/controllers/login_c.dart';
 import 'package:stride/auth/forms/signup.dart';
 import '../../utils/validators/validations.dart';
@@ -17,135 +18,154 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 60.0, horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Sign In',
-                style: TextStyle(
-                    fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Welcome back, \nkindly sign in to your account',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-              const SizedBox(height: 20),
-              Form(
-                key: controller.loginFormKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: controller.email,
-                      validator: (value) => BValidator.validateEmail(value),
-                      keyboardType: TextInputType.emailAddress,
-                      
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Iconsax.direct_right),
-                        hintText: 'example@host.com',
-                        hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                        labelText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)) 
-                        ),
-                      ),
-                    ),
-                    const SizedBox( height: 20), 
-                    // Password
-                    Obx(
-                      () => TextFormField(
-                        controller: controller.password,
-                        validator: (value) => BValidator.validatePassword(value),
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: controller.hidePassword.value,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          prefixIcon: const Icon(Iconsax.password_check),
-                          suffixIcon: IconButton(
-                            onPressed: () =>
-                                controller.hidePassword.value = !controller.hidePassword.value,
-                            icon: Icon(controller.hidePassword.value
-                                ? Iconsax.eye_slash
-                                : Iconsax.eye),
-                          ),
-                            border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)) 
-                        ),
-                        ),
-                      ),
-                    ),
-                         const SizedBox( height: 20), 
-                    // Remember Me and Forgot Password
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Remember Me.
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Obx(() => Checkbox(
-                                  value: controller.rememberMe.value,
-                                  onChanged: (value) =>
-                                      controller.rememberMe.value = value!,
-                                )),
-                            const Text('Remember Me'),
-                          ],
-                        ),
-                        // Forget Password.
-                        TextButton(
-                          onPressed: () {
-                            Get.to(() => const Forgotpwd());
-                          },
-                          child: const Text('Forget Password?'),
-                        ),
-                      ],
-                    ),
-                         const SizedBox( height: 20), 
-                    // Sign In Button
-                    // SizedBox(
-                    //   width: double.infinity,
-                    //   child: ElevatedButton(
-                    //       onPressed: () => controller.emailAndPasswordSignIn(),
-                    //       child: const Text('Sign In')),
-                    // ),
-GestureDetector( 
-  onTap: () => controller.emailAndPasswordSignIn(),
-  child:  Container( 
-    height: 50 , width: double.infinity,  
-    decoration: BoxDecoration(color: Colors.black, 
-    borderRadius: BorderRadius.circular(10)
-    ), 
-    child: const Align(child: Text('Sign In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 20),),),
-  ),
-), 
 
-                    // Create Account
+    // Correctly passing the child widget into the builder parameter
+    return ScreenUtilInit(
+      designSize: const Size(360, 690), // Base size for responsiveness
+      builder: (context, child) {
+        return SafeArea(
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 50.h, // Scaling for height
+                  horizontal: 30.w, // Scaling for width
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Text('Don\'t have an account?'),
-                        const SizedBox(width: 10),
-                        TextButton(
-                            onPressed: () {
-                              Get.to(() => const Signup());
-                            },
-                            child: const Text('Create Account')),
+                        Text(
+                          'Stride',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30.sp, // Responsive font size
+                            fontFamily: 'Maturascript',
+                          ),
+                        ),
                       ],
+                    ),
+                    SizedBox(height: 10.h), // Scaled height
+                    Text(
+                      'Sign In',
+                      style: TextStyle(
+                          fontSize: 24.sp, // Responsive font size
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Welcome back, \nkindly sign in to your account',
+                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(height: 20.h),
+                    Form(
+                      key: controller.loginFormKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: controller.email,
+                            validator: (value) => BValidator.validateEmail(value),
+                            keyboardType: TextInputType.emailAddress,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Iconsax.direct_right, size: 24.r), // Scaled icon size
+                              hintText: 'example@host.com',
+                              hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                              labelText: 'Email',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.h),
+                          Obx(
+                            () => TextFormField(
+                              controller: controller.password,
+                              validator: (value) => BValidator.validatePassword(value),
+                              textInputAction: TextInputAction.done,
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: controller.hidePassword.value,
+                              decoration: InputDecoration(
+                                labelText: 'Password',
+                                prefixIcon: Icon(Iconsax.password_check, size: 24.r),
+                                suffixIcon: IconButton(
+                                  onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+                                  icon: Icon(controller.hidePassword.value
+                                      ? Iconsax.eye_slash
+                                      : Iconsax.eye, size: 24.r),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Obx(() => Checkbox(
+                                    value: controller.rememberMe.value,
+                                    onChanged: (value) => controller.rememberMe.value = value!,
+                                  )),
+                                  Text('Remember Me', style: TextStyle(fontSize: 14.sp)),
+                                ],
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(() => const Forgotpwd());
+                                },
+                                child: Text('Forget Password?', style: TextStyle(fontSize: 14.sp)),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 20.h),
+                          GestureDetector(
+                            onTap: () => controller.emailAndPasswordSignIn(),
+                            child: Container(
+                              height: 50.h,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Align(
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 20.sp),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Don't have an account?", style: TextStyle(fontSize: 14.sp)),
+                              SizedBox(width: 10.w),
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(() => const Signup());
+                                },
+                                child: Text('Create Account', style: TextStyle(fontSize: 14.sp)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              )
-            ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

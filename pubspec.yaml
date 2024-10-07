@@ -21,6 +21,7 @@ dependencies:
    
   flutter_image_slider: ^0.0.2
   flutter_native_splash: ^2.4.1
+  flutter_screenutil: ^5.9.3
   font_awesome_flutter: ^10.7.0
   get: ^4.6.6
   get_storage: ^2.1.1
