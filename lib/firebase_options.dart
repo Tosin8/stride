@@ -41,48 +41,50 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAJJG2oaHoYRTqWjpvLpNDumSA9g9fNYrU',
-    appId: '1:317266133107:web:749b906998da13dd356a06',
-    messagingSenderId: '317266133107',
-    projectId: 'stride-79187',
-    authDomain: 'stride-79187.firebaseapp.com',
-    storageBucket: 'stride-79187.appspot.com',
-    measurementId: 'G-RD2XS4M3VX',
+    apiKey: 'AIzaSyC5VjEreNQWrEm9qpDmD3530b453t90P0k',
+    appId: '1:189567646506:web:f0b4caad4c109cc2db7c53',
+    messagingSenderId: '189567646506',
+    projectId: 'stride-67509',
+    authDomain: 'stride-67509.firebaseapp.com',
+    storageBucket: 'stride-67509.appspot.com',
+    measurementId: 'G-9M97PJKYJL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCTJkK4cLP6x-ckVOP34vj6p4E-gpmNVuM',
-    appId: '1:317266133107:android:5d4e17187cde659d356a06',
-    messagingSenderId: '317266133107',
-    projectId: 'stride-79187',
-    storageBucket: 'stride-79187.appspot.com',
+    apiKey: 'AIzaSyCeyOmY98YLbC1UidGNulsxNXLwj3Ts1nY',
+    appId: '1:189567646506:android:b84da6073cab93d6db7c53',
+    messagingSenderId: '189567646506',
+    projectId: 'stride-67509',
+    storageBucket: 'stride-67509.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD6Khq-pfvERs1gxcjK2ecyDEAb869c3mw',
-    appId: '1:317266133107:ios:1f14fb8758968ebf356a06',
-    messagingSenderId: '317266133107',
-    projectId: 'stride-79187',
-    storageBucket: 'stride-79187.appspot.com',
+    apiKey: 'AIzaSyAErNKQdwpDdp58GWh4sgwJ40DHWm5UIhI',
+    appId: '1:189567646506:ios:887aa5ffe5f1d1a6db7c53',
+    messagingSenderId: '189567646506',
+    projectId: 'stride-67509',
+    storageBucket: 'stride-67509.appspot.com',
+    iosClientId: '189567646506-v1b8s7pr4no78oi7lehd0f7212kbdq4u.apps.googleusercontent.com',
     iosBundleId: 'com.example.stride',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD6Khq-pfvERs1gxcjK2ecyDEAb869c3mw',
-    appId: '1:317266133107:ios:1f14fb8758968ebf356a06',
-    messagingSenderId: '317266133107',
-    projectId: 'stride-79187',
-    storageBucket: 'stride-79187.appspot.com',
+    apiKey: 'AIzaSyAErNKQdwpDdp58GWh4sgwJ40DHWm5UIhI',
+    appId: '1:189567646506:ios:887aa5ffe5f1d1a6db7c53',
+    messagingSenderId: '189567646506',
+    projectId: 'stride-67509',
+    storageBucket: 'stride-67509.appspot.com',
+    iosClientId: '189567646506-v1b8s7pr4no78oi7lehd0f7212kbdq4u.apps.googleusercontent.com',
     iosBundleId: 'com.example.stride',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAJJG2oaHoYRTqWjpvLpNDumSA9g9fNYrU',
-    appId: '1:317266133107:web:166a43814d5d986c356a06',
-    messagingSenderId: '317266133107',
-    projectId: 'stride-79187',
-    authDomain: 'stride-79187.firebaseapp.com',
-    storageBucket: 'stride-79187.appspot.com',
-    measurementId: 'G-FR1R137QP0',
+    apiKey: 'AIzaSyC5VjEreNQWrEm9qpDmD3530b453t90P0k',
+    appId: '1:189567646506:web:c8b475d3b4fa4a11db7c53',
+    messagingSenderId: '189567646506',
+    projectId: 'stride-67509',
+    authDomain: 'stride-67509.firebaseapp.com',
+    storageBucket: 'stride-67509.appspot.com',
+    measurementId: 'G-2H9P06B9GG',
   );
 }
