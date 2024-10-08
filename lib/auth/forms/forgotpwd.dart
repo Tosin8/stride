@@ -11,7 +11,13 @@ class _ForgotpwdState extends State<Forgotpwd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold (
-body: Container (), 
+body: Container (
+child: Padding (
+padding:: const EdgeInsets.symmetric(horizonal:20, vertical:18), 
+
+), 
+
+), 
 
 );
   }
