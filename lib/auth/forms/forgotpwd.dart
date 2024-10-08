@@ -10,6 +10,9 @@ class Forgotpwd extends StatefulWidget {
 class _ForgotpwdState extends State<Forgotpwd> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold (
+body: Container (), 
+
+);
   }
 }
