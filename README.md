@@ -1,3 +1,8 @@
-Shoe e-commerce app written in flutter, GetX state management, firebase.
+Shoe e-commerce app written in flutter.
+
+
+State Management: GetX state management.
+Backend : firebase.
+API: paystack payment API 
 
 Screenshots:.
