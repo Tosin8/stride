@@ -12,8 +12,8 @@ class _ForgotpwdState extends State<Forgotpwd> {
   Widget build(BuildContext context) {
     return Scaffold (
 body: Container (
-child: Padding (
-padding: const EdgeInsets.symmetric(horizontal:20, vertical:18), 
+child: const Padding (
+padding: EdgeInsets.symmetric(horizontal:20, vertical:18), 
 child:Column (
 children:[
 Text('Forgot Password'), 
