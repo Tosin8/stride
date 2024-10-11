@@ -13,7 +13,7 @@ class _ForgotpwdState extends State<Forgotpwd> {
     return Scaffold (
 body: Container (
 child: Padding (
-padding:: const EdgeInsets.symmetric(horizonal:20, vertical:18), 
+padding: const EdgeInsets.symmetric(horizontal:20, vertical:18), 
 child:Column (
 children:[
 Text('Forgot Password'), 
