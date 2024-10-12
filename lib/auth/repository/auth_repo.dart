@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -49,12 +48,11 @@ class AuthenticationRepository extends GetxController {
       }
     } else {
       // Local storage check
-      bool isFirstTime = deviceStorage.read('IsFirstTime') ?? true;
-      if (isFirstTime) {
-        Get.offAll(() => const SplashScreen());
-      } else {
-        Get.offAll(() => const LoginScreen());
-      }
+        deviceStorage.writeIfNull('IsFirstTime', true); 
+      deviceStorage.read('IsFirstTime') != true ?
+     Get.offAll(() => const LoginScreen()) : 
+     Get.offAll(() => const SplashScreen());
+  }
     }
   }
 
