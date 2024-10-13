@@ -179,7 +179,7 @@ Get.to(() => const NewArrivalScreen());
               },), 
                ProductsGrid(), 
                  const SizedBox(height: 10,), 
-              HeaderTitle(text: 'New Arrival', onPressed: (){
+              HeaderTitle(text: 'Popular', onPressed: (){
 Get.to(() => const NewArrivalScreen());
 
               },), 

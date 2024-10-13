@@ -33,29 +33,27 @@ class ProductsGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             var product = productController.products[index] as Map<String, dynamic>;
 
-            return Card(
-              child: Column(
-                children: [
-                  // Placeholder for product image
-                  Expanded(
-                    child: Image.network(
-                      product['image'] ?? '',
-                      fit: BoxFit.cover,
-                    ),
+            return Column(
+              children: [
+                // Placeholder for product image
+                Expanded(
+                  child: Image.network(
+                    product['image'] ?? '',
+                    fit: BoxFit.cover,
                   ),
-                  const SizedBox(height: 10),
-                  // Product name
-                  Text(
-                    product['name'] ?? 'No Name',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  // Product price
-                  Text(
-                    '\$${product['price'] ?? '0'}',
-                    style: const TextStyle(color: Colors.green),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 10),
+                // Product name
+                Text(
+                  product['name'] ?? 'No Name',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                // Product price
+                Text(
+                  '\$${product['price'] ?? '0'}',
+                  style: const TextStyle(color: Colors.green),
+                ),
+              ],
             );
           },
         ),
