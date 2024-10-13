@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stride/controllers/products/new_controller.dart';
 
 import 'package:stride/firebase_options.dart';
 
@@ -27,7 +28,12 @@ FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
 /// iniitalize firebase and auth. repository
 await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
-  (FirebaseApp value) => Get.put(AuthenticationRepository()), 
+  (FirebaseApp value) {
+     Get.put(
+    AuthenticationRepository()); 
+    Get.put(NewProductController()); 
+  }
+
   ); 
 
   // load all the material design
