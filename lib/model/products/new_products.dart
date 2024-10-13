@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:stride/controllers/products/new_controller.dart';
-
 
 class ProductsGrid extends StatelessWidget {
   final ProductController productController = Get.put(ProductController());
 
-   ProductsGrid({super.key});
+  ProductsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,20 @@ class ProductsGrid extends StatelessWidget {
               children: [
                 // Placeholder for product image
                 Expanded(
-                  child: Image.network(
-                    product['image'] ?? '',
-                    fit: BoxFit.cover,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      imageUrl: product['image'] ?? '',
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          color: Colors.grey[200],
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
