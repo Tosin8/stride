@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride/model/products/new_products.dart';
 import 'package:stride/screens/shop/home/widget/promo_slider.dart';
 import 'package:stride/utils/common/texts/header_title.dart';
+
+import 'widget/new_arrival.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -170,8 +173,16 @@ class _HomeScreenState extends State<HomeScreen> {
               // ),
              const PromoSlider(), 
               const SizedBox(height: 10,), 
-              HeaderTitle(text: 'New Arrival', onPressed: (){},), 
+              HeaderTitle(text: 'New Arrival', onPressed: (){
+Get.to(() => const NewArrivalScreen());
+
+              },), 
                ProductsGrid(), 
+                 const SizedBox(height: 10,), 
+              HeaderTitle(text: 'New Arrival', onPressed: (){
+Get.to(() => const NewArrivalScreen());
+
+              },), 
             ],
           ),
         ),
