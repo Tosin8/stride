@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:stride/screens/shop/home/promo_slider.dart';
+import 'package:stride/screens/shop/home/widget/promo_slider.dart';
+import 'package:stride/utils/common/texts/header_title.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // ),
               PromoSlider(), 
               SizedBox(height: 10,), 
-              Text('Collection', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), 
+              HeaderTitle(text: 'New Arrival',), 
             ],
           ),
         ),
