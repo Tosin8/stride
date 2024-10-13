@@ -199,7 +199,23 @@ class _SignupState extends State<Signup> {
                             borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: Align(
-                            child: Text(
+                            child: controller.isLoading.value
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(color: Colors.white),
+                  SizedBox(width: 10),
+                  Text(
+                    'Creating your account',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ],
+              )
+            : Text(
                               'Create Account',
                               style: TextStyle(
                                 color: Colors.white,

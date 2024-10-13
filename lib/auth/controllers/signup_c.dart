@@ -15,6 +15,8 @@ import '../repository/user_repo.dart';
 
 class SignupController extends GetxController{
   static SignupController get instance => Get.find(); 
+  final isLoading = false.obs; // Add this variable to track loading state
+
 
   /// variables
   final hidePassword = true.obs; // observable for hiding/showing password. 
@@ -33,7 +35,7 @@ class SignupController extends GetxController{
     try{
 
       // Start loading
-      BFullScreenLoader.openLoadingDialog('We are processing your information...', SImages.docerAnimation); 
+      // BFullScreenLoader.openLoadingDialog('We are processing your information...', SImages.docerAnimation); 
 
 // Check Internet Connection
 final isConnected = await NetworkManager.instance.isConnected(); 

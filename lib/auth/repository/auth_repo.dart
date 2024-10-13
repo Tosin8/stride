@@ -3,10 +3,10 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:stride/screens/splash.dart';
 import 'package:stride/utils/exceptions/format_exceptions.dart';
 import 'package:stride/utils/exceptions/platform_exceptions.dart';
 import '../../screens/navigation_menu.dart';
+import '../../screens/splash.dart';
 import '../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../utils/exceptions/firebase_exception.dart';
 import '../../utils/storage/storage_utility.dart';
@@ -49,6 +49,11 @@ class AuthenticationRepository extends GetxController {
     } else {
       // Local storage check
         deviceStorage.writeIfNull('IsFirstTime', true); 
+        // check if it's the first time launching the app - using local storage. 
+    deviceStorage.read('IsFirstTime') != true ?
+     Get.offAll(() => const LoginScreen()) : 
+     Get.offAll(() => const SplashScreen());
+        
      
     }
   }
