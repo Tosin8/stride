@@ -1,62 +1,35 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
 import 'package:stride/firebase_options.dart';
 
+import 'app.dart';
 import 'auth/repository/auth_repo.dart';
-import 'bindings/general_binding.dart';
-import 'routes/app_routes.dart';
+
+
+
 
 Future<void> main() async {
-  // Ensure widgets binding is initialized
-  WidgetsFlutterBinding.ensureInitialized();
+  /// widgets binding 
+  
+  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized(); 
 
-  // Initialize GetStorage
+  /// getx local storage 
   await GetStorage.init();
 
-  // Preserve the native splash screen until initialization is complete
-  FlutterNativeSplash.preserve(widgetsBinding: WidgetsBinding.instance);
+  /// await splash until other items load
 
-  try {
-    // Initialize Firebase and the authentication repository
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    Get.put(AuthenticationRepository());
-  } catch (e) {
-    // Handle any errors during Firebase initialization
-    print("Error initializing Firebase: $e");
-  } finally {
-    // Hide the splash screen once initialization is done
-    FlutterNativeSplash.remove();
-  }
+FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Load the app
-  runApp(const MyApp());
-}
+/// iniitalize firebase and auth. repository
+await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
+  (FirebaseApp value) => Get.put(AuthenticationRepository()), 
+  ); 
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Stride',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      initialBinding: GeneralBindings(),
-      getPages: AppRoutes.pages,
-      home: const Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: CircularProgressIndicator(
-            color: Colors.deepPurple, // Match with your theme
-          ),
-        ),
-      ),
-    );
-  }
+  // load all the material design
+   runApp(const MyApp());  
 }
