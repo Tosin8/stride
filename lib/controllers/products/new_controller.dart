@@ -1,0 +1,3 @@
+class NewProductController extends GetxController {
+  
+}

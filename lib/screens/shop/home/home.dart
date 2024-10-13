@@ -147,9 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       // Body.
-      body:  const SingleChildScrollView(
+      body:  SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -167,9 +167,9 @@ class _HomeScreenState extends State<HomeScreen> {
               //     fit: BoxFit.cover,
               //   ),
               // ),
-              PromoSlider(), 
-              SizedBox(height: 10,), 
-              HeaderTitle(text: 'New Arrival',), 
+              const PromoSlider(), 
+              const SizedBox(height: 10,), 
+              HeaderTitle(text: 'New Arrival', onPressed: (){},), 
             ],
           ),
         ),
