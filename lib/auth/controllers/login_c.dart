@@ -29,11 +29,7 @@ class LoginController extends GetxController {
   // Email and Password SignIn
   Future<void> emailAndPasswordSignIn() async {
     // Form validation - Ensure the form is valid before doing anything else
-    if (!loginFormKey.currentState!.validate()) {
-      BFullScreenLoader.stopLoading();
-      return;
-    }
-
+   
     try {
       // Start loading
       BFullScreenLoader.openLoadingDialog('Logging you in...', SImages.docerAnimation);
@@ -45,6 +41,11 @@ class LoginController extends GetxController {
         return;
       }
 
+ if (!loginFormKey.currentState!.validate()) {
+      BFullScreenLoader.stopLoading();
+      return;
+    }
+
       // Perform the login request here...
       // (Assumed that you handle the login process with API after this point)
 
@@ -54,6 +55,8 @@ class LoginController extends GetxController {
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
 
+// login user using Email & password authentication
+final userCredentials = await AuthenticationRepository.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
         // Remove loader
       BFullScreenLoader.stopLoading();
       email.clear();
