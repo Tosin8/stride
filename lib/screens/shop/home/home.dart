@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:stride/model/products/new_products.dart';
 import 'package:stride/screens/shop/home/widget/promo_slider.dart';
 import 'package:stride/utils/common/texts/header_title.dart';
 
@@ -167,9 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
               //     fit: BoxFit.cover,
               //   ),
               // ),
-              const PromoSlider(), 
+             const PromoSlider(), 
               const SizedBox(height: 10,), 
               HeaderTitle(text: 'New Arrival', onPressed: (){},), 
+               ProductsGrid(), 
             ],
           ),
         ),

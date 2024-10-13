@@ -31,7 +31,7 @@ await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).th
   (FirebaseApp value) {
      Get.put(
     AuthenticationRepository()); 
-    Get.put(NewProductController()); 
+    Get.put(ProductController()); 
   }
 
   ); 
