@@ -75,6 +75,9 @@ flutter:
     - assets/images/animations/sammy-line-man-receives-a-mail.png
     - assets/images/animations/sammy-line-success.png
     - assets/images/animations/json/72462-check-register.json
+
+    #banner
+    - assets/banner/banner_1.jpg
     
 
  
