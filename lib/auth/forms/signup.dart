@@ -203,8 +203,8 @@ class _SignupState extends State<Signup> {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(color: Colors.white),
-                  SizedBox(width: 10),
+                  const CircularProgressIndicator(color: Colors.white),
+                  const SizedBox(width: 10),
                   Text(
                     'Creating your account',
                     style: TextStyle(

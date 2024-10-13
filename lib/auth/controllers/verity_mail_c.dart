@@ -50,7 +50,7 @@ if(user?.emailVerified ?? false) {
       image: SImages.successfullyRegisterAnimation, 
       title: 'BTexts.yourAccountCreatedTitle',
       subTitle: 'BTexts.yourAccountCreatedSubTitle',
-      onPressed: () => AuthenticationRepository.instance.screenRedirect(), 
+      onTap: () => AuthenticationRepository.instance.screenRedirect(), 
     ),
   ); 
 }
@@ -65,9 +65,9 @@ if(user?.emailVerified ?? false) {
       Get.off(
         () => SuccessScreen(
           image: SImages.successfullyRegisterAnimation, 
-          title: 'BTexts.yourAccountCreatedTitle',
+          title: 'Your account is now created',
            subTitle: 'BTexts.yourAccountCreatedSubTitle', 
-           onPressed: () => AuthenticationRepository.instance.screenRedirect(),
+           onTap: () => AuthenticationRepository.instance.screenRedirect(),
            )
            ); 
     }

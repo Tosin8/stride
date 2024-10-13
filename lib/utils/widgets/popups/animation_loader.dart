@@ -1,20 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-
 class BAnimationLoaderWidget extends StatelessWidget {
-  const BAnimationLoaderWidget({
+  BAnimationLoaderWidget({
+    super.key,
+    required this.animation,
+    this.showAction = false,
+    this.actionText,
+    this.onActionPressed, required String text,
+  });
 
-super.key,
-      required this.text, 
-      required this.animation, 
-      this.showAction = false, 
-      this.actionText, 
-      this.onActionPressed, 
-    }); 
-
-    final String text; 
+     String text = 'Please wait...'; 
     final String animation; 
     final bool showAction; 
     final String? actionText; 
@@ -33,19 +31,19 @@ super.key,
          // const SizedBox(height: BSizes.defaultSpace,), 
           Text(
             text,
-             style: Theme.of(context).textTheme.bodyMedium,
-          textAlign: TextAlign.center,), 
-
+             style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
+          textAlign: TextAlign.center, ), 
+    
           // const SizedBox(
           //   height: BSizes.defaultSpace,), 
-
+    
           showAction ?
            SizedBox(
             width: 250, 
           child: OutlinedButton(
             onPressed: onActionPressed,
              style: OutlinedButton.styleFrom(backgroundColor: Colors.black),
-
+    
             child: Text(actionText!,
              style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white)
              ),

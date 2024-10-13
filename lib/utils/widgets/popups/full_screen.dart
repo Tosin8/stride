@@ -10,12 +10,14 @@ class BFullScreenLoader {
       builder: (_) => PopScope(
         canPop: false,
         child: Center( // Centering the dialog to prevent overflow
-          child: Column(
-            mainAxisSize: MainAxisSize.min, // Ensures the column takes up only the needed space
-            children: [
-              const SizedBox(height: 250), 
-              BAnimationLoaderWidget(text: text, animation: animation),
-            ],
+          child: SingleChildScrollView( // Add this to prevent overflow
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // Ensure it takes up only the needed space
+              children: [
+                const SizedBox(height: 250), 
+                BAnimationLoaderWidget(text: text, animation: animation),
+              ],
+            ),
           ),
         ),
       ),

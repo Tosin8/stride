@@ -10,12 +10,12 @@ class SuccessScreen extends StatelessWidget {
   required this.image, 
   required this.title,
    required this.subTitle,
-    required this.onPressed
+    required this.onTap, 
     });
 
 
 final String image, title, subTitle; 
-final VoidCallback onPressed; 
+final VoidCallback onTap; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +47,15 @@ final VoidCallback onPressed;
                /// Button 
                SizedBox(
                 width: double.infinity, 
-                child: ElevatedButton(
-                  onPressed: onPressed,
-                   child: const Text('BTexts.tContinue')),
+                child: GestureDetector(
+                  onTap: onTap,
+                   child: Container(
+                    height: 50, 
+                    width: double.infinity, 
+                    decoration: BoxDecoration(color: Colors.black, 
+                    borderRadius: BorderRadius.circular(10)),
+                    alignment: Alignment.center,
+                    child: const Text('Continue')),),
                )
 
             ],

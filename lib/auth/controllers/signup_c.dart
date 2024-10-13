@@ -35,7 +35,7 @@ class SignupController extends GetxController{
     try{
 
       // Start loading
-      // BFullScreenLoader.openLoadingDialog('We are processing your information...', SImages.docerAnimation); 
+      BFullScreenLoader.openLoadingDialog('We are processing your information...', SImages.docerAnimation); 
 
 // Check Internet Connection
 final isConnected = await NetworkManager.instance.isConnected(); 

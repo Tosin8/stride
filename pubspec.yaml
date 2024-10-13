@@ -70,6 +70,13 @@ flutter:
     - assets/products/newarrival/4.jpg
     - assets/products/newarrival/5.jpg
 
+    #animation. 
+    - assets/images/animations/json/141594-animation-of-docer.json
+    - assets/images/animations/sammy-line-man-receives-a-mail.png
+    - assets/images/animations/sammy-line-success.png
+    - assets/images/animations/json/72462-check-register.json
+    
+
  
   fonts:
     # - family: Schyler
