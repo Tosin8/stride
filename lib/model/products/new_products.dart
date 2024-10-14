@@ -38,20 +38,23 @@ class ProductsGrid extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Placeholder for product image
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: CachedNetworkImage(
-                      imageUrl: product['image'] ?? '',
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: Container(
-                          color: Colors.grey[200],
+                GestureDetector(
+                  onTap: () {},
+                  child: Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl: product['image'] ?? '',
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            color: Colors.grey[200],
+                          ),
                         ),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
                       ),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 ),
