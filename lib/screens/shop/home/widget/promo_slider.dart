@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PromoSlider extends StatefulWidget {
   const PromoSlider({super.key});
@@ -39,17 +40,37 @@ class _PromoSliderState extends State<PromoSlider> {
   @override
   Widget build(BuildContext context) {
     return _carouselImages.isEmpty
-        ? const Center(child: CircularProgressIndicator())
+        ? Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: double.infinity,
+              height: 180.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.grey[300],
+              ),
+            ),
+          )
         : Column(
             children: [
               CarouselSlider(
                 items: _carouselImages.map((url) {
                   return ClipRRect(
-                     borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15),
                     child: CachedNetworkImage(
                       imageUrl: url,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          width: double.infinity,
+                          height: 180.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.grey[300],
+                          ),
+                        ),
                       ),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
@@ -60,7 +81,7 @@ class _PromoSliderState extends State<PromoSlider> {
                 }).toList(),
                 options: CarouselOptions(
                   autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-                  autoPlayInterval: const Duration(seconds: 5), 
+                  autoPlayInterval: const Duration(seconds: 5),
                   autoPlayCurve: Curves.easeIn,
                   height: 180.0,
                   autoPlay: true,

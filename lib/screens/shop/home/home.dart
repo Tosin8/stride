@@ -157,20 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Cached image with loading indicator.
-              // SizedBox(
-              //   height: 200,
-              //   width: double.infinity,
-              //   child: CachedNetworkImage(
-              //     imageUrl:
-              //         'https://firebasestorage.googleapis.com/v0/b/stride-67509.appspot.com/o/banners%2Fbanner_adj.jpg?alt=media&token=6b48f456-7ecc-47b7-91e7-d65de8bb6f00',
-              //     placeholder: (context, url) => const Center(
-              //       child: CircularProgressIndicator(),
-              //     ),
-              //     errorWidget: (context, url, error) => const Icon(Icons.error),
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
+              
              const PromoSlider(), 
               const SizedBox(height: 10,), 
               HeaderTitle(text: 'New Arrival', onPressed: (){

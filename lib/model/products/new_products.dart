@@ -34,6 +34,8 @@ class ProductsGrid extends StatelessWidget {
             var product = productController.products[index] as Map<String, dynamic>;
 
             return Column(
+             // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Placeholder for product image
                 Expanded(
@@ -57,12 +59,13 @@ class ProductsGrid extends StatelessWidget {
                 // Product name
                 Text(
                   product['name'] ?? 'No Name',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
                 // Product price
                 Text(
                   '\$${product['price'] ?? '0'}',
-                  style: const TextStyle(color: Colors.green),
+                  style: const TextStyle(color: Colors.green, 
+                  fontSize: 16),
                 ),
               ],
             );
