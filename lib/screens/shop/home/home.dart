@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:iconsax/iconsax.dart';
 import 'package:stride/model/products/new_products.dart';
 import 'package:stride/screens/shop/home/widget/promo_slider.dart';
@@ -15,24 +18,86 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String _currentLocation = 'Loading location...';
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      setState(() {
+        _currentLocation = 'Turn on your GPS for live location';
+      });
+      return;
+    }
+
+    // Check for location permissions.
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        setState(() {
+          _currentLocation = 'Location permissions are permanently denied';
+        });
+        return;
+      }
+
+      if (permission == LocationPermission.denied) {
+        setState(() {
+          _currentLocation = 'Location permissions are denied';
+        });
+        return;
+      }
+    }
+
+    // If permissions are granted, get the user's current position using new location settings.
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+        ),
+      );
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+      Placemark place = placemarks[0];
+
+      setState(() {
+        _currentLocation = '${place.locality}, ${place.country}';
+      });
+    } catch (e) {
+      setState(() {
+        _currentLocation = 'Failed to get location: $e';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar.
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
         leading: const Icon(Iconsax.menu),
-        flexibleSpace: const Padding(
-          padding: EdgeInsets.only(top: 62),
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(top: 62),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Iconsax.location),
-              SizedBox(width: 5),
+              const Icon(Iconsax.location),
+              const SizedBox(width: 5),
               Text(
-                'Lagos, Nigeria',
-                style: TextStyle(color: Colors.black),
+                _currentLocation,
+                style: const TextStyle(color: Colors.black),
               ),
             ],
           ),
@@ -151,25 +216,28 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       // Body.
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
-             const PromoSlider(), 
-              const SizedBox(height: 10,), 
-              HeaderTitle(text: 'New Arrival', onPressed: (){
-Get.to(() => const NewArrivalScreen());
-
-              },), 
-               ProductsGrid(), 
-                 const SizedBox(height: 10,), 
-              HeaderTitle(text: 'Popular', onPressed: (){
-Get.to(() => const NewArrivalScreen());
-
-              },), 
+              const PromoSlider(),
+              const SizedBox(height: 10),
+              HeaderTitle(
+                text: 'New Arrival',
+                onPressed: () {
+                  Get.to(() => const NewArrivalScreen());
+                },
+              ),
+              ProductsGrid(),
+              const SizedBox(height: 10),
+              HeaderTitle(
+                text: 'Popular',
+                onPressed: () {
+                  Get.to(() => const NewArrivalScreen());
+                },
+              ),
             ],
           ),
         ),
