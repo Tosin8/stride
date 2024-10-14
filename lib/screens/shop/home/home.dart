@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:iconsax/iconsax.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:stride/model/products/new_products.dart';
+import 'package:stride/screens/cart/cart.dart';
 import 'package:stride/screens/shop/home/widget/promo_slider.dart';
 import 'package:stride/utils/common/texts/header_title.dart';
 
@@ -138,7 +140,16 @@ class _HomeScreenState extends State<HomeScreen> {
             fit: StackFit.passthrough,
             clipBehavior: Clip.none,
             children: [
-              const Icon(Iconsax.shopping_cart),
+              IconButton(onPressed: (){
+                 showBarModalBottomSheet(
+                    context: context,
+                    builder: (context) => Container(
+                      color: Colors.white,
+                      child: const ShoppingCart(),
+                    ),
+                  );
+              }, icon: const Icon(Iconsax.shopping_cart)), 
+            
               Positioned(
                 top: -8,
                 right: -3,
@@ -151,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: const Align(
                     child: Text(
-                      '2',
+                      '0',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

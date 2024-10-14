@@ -19,6 +19,16 @@ class UserRepository extends GetxController{
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  // Observable userModel
+  Rx<UserModel> userModel = UserModel.empty().obs;
+@override
+  void onReady() {
+    super.onReady();
+    fetchUserDetails().then((user) {
+      userModel.value = user; // Update the observable when user details are fetched
+    });
+  }
+
   /// Function to save user data to firstore. 
 
   Future<void> saveUserRecord(UserModel user) async {
@@ -58,7 +68,7 @@ class UserRepository extends GetxController{
 
   
   
-  // Function to update user data in Firestore. 
+ // Function to update user data in Firestore. 
   Future<void> updateUserDetails(UserModel updatedUser) async {
     try {
       await _db.collection("Users").doc(updatedUser.id).update(updatedUser.toJson()); 
@@ -72,6 +82,19 @@ class UserRepository extends GetxController{
       throw 'Something went wrong. Please try again';
     }
   } 
+
+//  Future<void> updateUserData(Map<String, dynamic> data) async {
+//     try {
+//       await _db
+//           .collection("Users")
+//           .doc(AuthenticationRepository.instance.authUser?.uid)
+//           .update(data);
+      
+//       // Fetch updated user data after update
+//       userModel.value = await fetchUserDetails();
+//     } catch (e) {
+//      throw 'Something went wrong> Please try again';
+//     }
 
   // Update any field in specific Users collection
   Future<void> updateSingleField(Map<String, dynamic> json) async {
@@ -122,5 +145,4 @@ return url;
       throw 'Something went wrong. Please try again';
     }
  
-}
-}
+}}}

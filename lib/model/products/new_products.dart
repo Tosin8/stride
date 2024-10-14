@@ -26,8 +26,11 @@ class ProductsGrid extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),  // Disable scrolling inside the grid
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+              childAspectRatio: .63,
             crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+           
+        mainAxisSpacing: 4.0,
+           // mainAxisSpacing: 10,
           ),
           itemCount: 4,
           itemBuilder: (context, index) {
@@ -65,10 +68,20 @@ class ProductsGrid extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
                 // Product price
-                Text(
-                  '\$${product['price'] ?? '0'}',
-                  style: const TextStyle(color: Colors.green, 
-                  fontSize: 16),
+                Row(
+                  children: [
+                    Text(
+                      '\$${product['price'] ?? '0'}',
+                      style: const TextStyle(color: Colors.green, 
+                      fontSize: 16),
+                    ),
+                    const SizedBox(width: 30), 
+                     IconButton(
+                  icon: const Icon(Icons.add_shopping_cart),
+                  onPressed: () {
+                    cartController.addProductToCart(product);
+                  })
+                  ],
                 ),
               ],
             );
