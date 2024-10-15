@@ -9,15 +9,15 @@ class CartController extends GetxController {
     if (cartItems.any((item) => item['id'] == product['id'])) {
       // Show a snackbar message
       Get.snackbar(
-        'Product Already Added',
-        'The product is already added, check your cart.',
+        'Check your cart',
+        'The product is already added. ',
         snackPosition: SnackPosition.BOTTOM,
       );
       return; // Exit the function if the product is already in the cart
     }
 
-     // Parse price as double, if necessary
-  double price = double.tryParse(product['price'].toString()) ?? 0.0;
+    // Parse price as double, if necessary
+    double price = double.tryParse(product['price'].toString()) ?? 0.0;
 
     // Otherwise, add the product to the cart
     cartItems.add({
@@ -32,6 +32,7 @@ class CartController extends GetxController {
     var index = cartItems.indexWhere((item) => item['id'] == product['id']);
     if (index != -1) {
       cartItems[index]['quantity']++;
+      cartItems.refresh(); // Refresh the cartItems observable
     }
   }
 
@@ -40,6 +41,7 @@ class CartController extends GetxController {
     var index = cartItems.indexWhere((item) => item['id'] == product['id']);
     if (index != -1 && cartItems[index]['quantity'] > 1) {
       cartItems[index]['quantity']--;
+      cartItems.refresh(); // Refresh the cartItems observable
     }
   }
 

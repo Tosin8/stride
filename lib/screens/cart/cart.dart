@@ -27,8 +27,8 @@ class CartPage extends StatelessWidget {
 
                         var imageUrl = product['image'] ?? '';
                         var productName = product['name'] ?? 'Unknown Product';
-                        var price = product['price'] ?? 0.0;
-                        var quantity = product['quantity'] ?? 1;
+                        double price = product['price'] ?? 0.0;
+                        int quantity = product['quantity'] ?? 1; // Get quantity
 
                         return ListTile(
                           leading: CachedNetworkImage(
@@ -39,30 +39,40 @@ class CartPage extends StatelessWidget {
                             errorWidget: (context, url, error) => const Icon(Icons.error),
                           ),
                           title: Text(productName),
-                          subtitle: Text('\$${price.toStringAsFixed(2)}'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
+                          subtitle: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              IconButton(
-                                icon: const Icon(Icons.remove),
-                                onPressed: () {
-                                  cartController.decreaseQuantity(product);
-                                },
-                              ),
-                              Text('$quantity'), // Display current quantity
-                              IconButton(
-                                icon: const Icon(Icons.add),
-                                onPressed: () {
-                                  cartController.increaseQuantity(product);
-                                },
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () {
-                                  cartController.removeProductFromCart(product);
-                                },
+                              Text('\$${price.toStringAsFixed(2)} (Qty: $quantity)'),
+                              Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.remove),
+                                    onPressed: () {
+                                      cartController.decreaseQuantity(product);
+                                    },
+                                  ),
+                                  Text('$quantity'), // Display current quantity
+                                  IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () {
+                                      cartController.increaseQuantity(product);
+                                    },
+                                  ),
+                                ],
                               ),
                             ],
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              cartController.removeProductFromCart(product);
+                              // Show snackbar that the product has been removed
+                              Get.snackbar(
+                                'Product Removed',
+                                '$productName has been removed from your cart.',
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                            },
                           ),
                         );
                       },
