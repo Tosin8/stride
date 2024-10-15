@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:stride/model/cart_item.dart';
+
 import 'package:stride/utils/formatters/formatter.dart';
 
 class UserModel {
@@ -10,7 +10,7 @@ class UserModel {
   final String email;
   String phoneNumber;
   String profilePicture;
-  List<CartItemModel> cart;
+  
 
   UserModel({
     required this.id,
@@ -20,7 +20,7 @@ class UserModel {
     required this.email,
     required this.phoneNumber,
     required this.profilePicture,
-    required this.cart,
+   
   });
 
   String get fullName => "$firstName $lastName";
@@ -33,7 +33,7 @@ class UserModel {
     List<String> nameParts = fullName.split(" ");
     String firstName = nameParts[0].toLowerCase();
     String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
-    return "cwt_${firstName}${lastName}";
+    return "cwt_$firstName$lastName";
   }
 
   static UserModel empty() => UserModel(
@@ -44,7 +44,7 @@ class UserModel {
         email: '',
         phoneNumber: '',
         profilePicture: '',
-        cart: [],
+        
       );
 
   Map<String, dynamic> toJson() {
@@ -55,7 +55,7 @@ class UserModel {
       'Email': email,
       'PhoneNumber': phoneNumber,
       'ProfilePicture': profilePicture,
-      'Cart': cartItemsToJson(),  // Include cart serialization.
+     // 'Cart': cartItemsToJson(),  // Include cart serialization.
     };
   }
 
@@ -70,20 +70,20 @@ class UserModel {
         email: data['Email'] ?? '',
         phoneNumber: data['PhoneNumber'] ?? '',
         profilePicture: data['ProfilePicture'] ?? '',
-        cart: _convertCartItems(data['cart'] ?? []),  // Process cart items.
+       
       );
     } else {
       return UserModel.empty();
     }
   }
 
-  static List<CartItemModel> _convertCartItems(List<dynamic> cartFromDb) {
-    List<CartItemModel> result = [];
-    for (var element in cartFromDb) {
-      result.add(CartItemModel.fromMap(element));
-    }
-    return result;
-  }
+  // static List<CartItemModel> _convertCartItems(List<dynamic> cartFromDb) {
+  //   List<CartItemModel> result = [];
+  //   for (var element in cartFromDb) {
+  //     result.add(CartItemModel.fromMap(element));
+  //   }
+  //   return result;
+  // }
 
-  List cartItemsToJson() => cart.map((item) => item.toJson()).toList();
+  // List cartItemsToJson() => cart.map((item) => item.toJson()).toList();
 }

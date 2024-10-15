@@ -15,7 +15,8 @@ import 'package:stride/controllers/cart_controller.dart'; // Adjust this path ba
 import 'widget/new_arrival.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  
+   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -168,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Center(
         child: Text(
           '$itemCount',
+         
           style: const TextStyle(color: Colors.white),
         ),
       ),
@@ -255,6 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Get.to(() => const NewArrivalScreen());
                 },
               ),
+               ProductsGrid(),
             ],
           ),
         ),

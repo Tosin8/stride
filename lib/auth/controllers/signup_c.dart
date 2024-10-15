@@ -73,7 +73,7 @@ final newUser = UserModel(
   username: username.text.trim(), 
   email: email.text.trim(), 
   phoneNumber : phoneNumber.text.trim(), 
-  profilePicture: '', cart: [], 
+  profilePicture: '', 
 ); 
 
 final userRepository = Get.put(UserRepository()); 

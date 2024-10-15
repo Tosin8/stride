@@ -24,11 +24,12 @@ class ProductsGrid extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: .63,
-            crossAxisSpacing: 8,
+            childAspectRatio: .75, 
+            crossAxisSpacing: 15,
             mainAxisSpacing: 5.0,
           ),
-          itemCount: productController.products.length,  // Display all products
+         // itemCount: productController.products.length,  // Display all products
+         itemCount: 4,
           itemBuilder: (context, index) {
             var product = productController.products[index] as Map<String, dynamic>;
 
@@ -42,6 +43,8 @@ class ProductsGrid extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: product['image'] ?? '',
           fit: BoxFit.cover,
+          height: 150,  // Set a fixed height for uniformity
+              width: double.infinity,
           placeholder: (context, url) => Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
             highlightColor: Colors.grey[100]!,
@@ -59,13 +62,14 @@ class ProductsGrid extends StatelessWidget {
       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
     ),
     Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // Ensure price is handled as a number
         Text(
           '\$${(product['price'] is String ? double.tryParse(product['price']) : product['price']) ?? 0}',
           style: const TextStyle(color: Colors.green, fontSize: 16),
         ),
-        const SizedBox(width: 30),
+        //const SizedBox(width: 30),
         IconButton(
           icon: const Icon(Icons.add_shopping_cart),
           onPressed: () {
