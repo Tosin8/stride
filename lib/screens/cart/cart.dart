@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:stride/controllers/cart_controller.dart';
 
@@ -97,11 +98,12 @@ class CartPage extends StatelessWidget {
                     onPressed: () {
                       if (cartController.totalPrice > 0) {
                         // Navigate to checkout or payment
+                        Get.toNamed('/checkout');
                       } else {
                         // Show message when cart is empty
                         Get.snackbar(
                           'Cart is Empty',
-                          'Add products to your cart before proceeding to checkout',
+                          'Add products to your cart',
                           snackPosition: SnackPosition.BOTTOM,
                         );
                       }
@@ -112,6 +114,7 @@ class CartPage extends StatelessWidget {
                           : 'Pay \$0.00', // Button when cart is empty
                     ),
                   ),
+              
                 ],
               ),
             ),
