@@ -17,51 +17,62 @@ class _CheckoutPageState extends State<CheckoutPage> {
       appBar: AppBar(
         title: const Text('Checkout'),
       ),
-      body: Column(
-        children: [
-          EasyStepper(
-            activeStep: currentStep,
-            // If the following parameters are not defined in your version, you can remove them
-          //  lineLength: 50, // Length of the lines connecting the steps
-            steppingEnabled: true, // Enable/disable stepping
-            steps: [
-              EasyStep(title: 'Shipping'),
-              EasyStep(title: 'Payment'),
-              EasyStep(title: 'Review'),
-            ],
-          ),
-          Expanded(
-            child: IndexedStack(
-              index: currentStep,
-              children: [
-                _ShippingPage(onNext: _goToNextStep),
-                _PaymentPage(onNext: _goToNextStep),
-                _ReviewPage(onOrderPlaced: _placeOrder),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            EasyStepper(
+              activeStep: currentStep,
+             // lineLength: 50, // Length of the lines connecting the steps
+              steppingEnabled: true, // Enable/disable stepping
+              steps: const [
+                EasyStep(
+                  title: 'Shipping',
+                  icon: Icon(Icons.local_shipping), // Add an icon for the Shipping step
+                ),
+                EasyStep(
+                  title: 'Payment',
+                  icon: Icon(Icons.payment), // Add an icon for the Payment step
+                ),
+                EasyStep(
+                  title: 'Review',
+                  icon: Icon(Icons.rate_review), // Add an icon for the Review step
+                ),
               ],
             ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              if (currentStep > 0)
-                ElevatedButton(
-                  onPressed: _goToPreviousStep,
-                  child: const Text('Back'),
-                ),
-              if (currentStep < 2)
-                ElevatedButton(
-                  onPressed: _goToNextStep,
-                  child: const Text('Next'),
-                ),
-              if (currentStep == 2)
-                ElevatedButton(
-                  onPressed: _placeOrder,
-                  child: const Text('Place Order'),
-                ),
-            ],
-          ),
-        ],
+            Expanded(
+              child: IndexedStack(
+                index: currentStep,
+                children: [
+                  _ShippingPage(onNext: _goToNextStep),
+                  _PaymentPage(onNext: _goToNextStep),
+                  _ReviewPage(onOrderPlaced: _placeOrder),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                if (currentStep > 0)
+                  ElevatedButton(
+                    onPressed: _goToPreviousStep,
+                    child: const Text('Back'),
+                  ),
+                if (currentStep < 2)
+                  ElevatedButton(
+                    onPressed: _goToNextStep,
+                    child: const Text('Next'),
+                  ),
+                if (currentStep == 2)
+                  ElevatedButton(
+                    onPressed: _placeOrder,
+                    child: const Text('Place Order'),
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
