@@ -19,62 +19,64 @@ class ProductsGrid extends StatelessWidget {
       }
 
       return SizedBox(
-        height: 400,  // Define a specific height or use MediaQuery to make it dynamic
+        height: MediaQuery.of(context).size.height * 0.6,   // Define a specific height or use MediaQuery to make it dynamic
         child: GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: .63,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 5.0,
           ),
           itemCount: productController.products.length,  // Display all products
           itemBuilder: (context, index) {
             var product = productController.products[index] as Map<String, dynamic>;
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: CachedNetworkImage(
-                      imageUrl: product['image'] ?? '',
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: Container(
-                          color: Colors.grey[200],
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  product['name'] ?? 'No Name',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '\$${product['price'] ?? '0'}',
-                      style: const TextStyle(color: Colors.green, fontSize: 16),
-                    ),
-                    const SizedBox(width: 30),
-                    IconButton(
-                      icon: const Icon(Icons.add_shopping_cart),
-                      onPressed: () {
-                        cartController.addProductToCart(product);
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            );
+           return Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    GestureDetector(
+      onTap: () {},
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: CachedNetworkImage(
+          imageUrl: product['image'] ?? '',
+          fit: BoxFit.cover,
+          placeholder: (context, url) => Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              color: Colors.grey[200],
+            ),
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+      ),
+    ),
+    const SizedBox(height: 10),
+    Text(
+      product['name'] ?? 'No Name',
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+    ),
+    Row(
+      children: [
+        // Ensure price is handled as a number
+        Text(
+          '\$${(product['price'] is String ? double.tryParse(product['price']) : product['price']) ?? 0}',
+          style: const TextStyle(color: Colors.green, fontSize: 16),
+        ),
+        const SizedBox(width: 30),
+        IconButton(
+          icon: const Icon(Icons.add_shopping_cart),
+          onPressed: () {
+            cartController.addProductToCart(product);
+          },
+        ),
+      ],
+    ),
+  ],
+);
+
           },
         ),
       );
