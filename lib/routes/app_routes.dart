@@ -14,7 +14,7 @@ class AppRoutes {
     GetPage(name: BRoutes.home, page: () => const HomeScreen()),
         GetPage(name: BRoutes.signIn, page: () => const LoginScreen()), 
         GetPage(name: BRoutes.splash, page: () => const SplashScreen()),
-          GetPage(name: BRoutes.checkout, page: () => const CheckOut()),
+          GetPage(name: BRoutes.checkout, page: () => const CheckoutPage()),
         
         
       

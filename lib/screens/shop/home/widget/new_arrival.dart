@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:stride/controllers/cart_controller.dart';
 import 'package:stride/controllers/products/new_controller.dart';
+import 'package:stride/controllers/products/wishlist_controller.dart';
 
 class NewArrivalScreen extends StatefulWidget {
   const NewArrivalScreen({super.key});
@@ -15,6 +17,7 @@ class NewArrivalScreen extends StatefulWidget {
 class _NewArrivalScreenState extends State<NewArrivalScreen> {
    final ProductController productController = Get.put(ProductController()); // Assuming ProductController is the class name
    final CartController cartController = Get.put(CartController());
+   final WishlistController wishlistController = Get.put(WishlistController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,61 +51,77 @@ body:  Padding(
             itemBuilder: (context, index) {
               var product = productController.products[index] as Map<String, dynamic>;
   
-             return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      GestureDetector(
-        onTap: () {},
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: CachedNetworkImage(
-            imageUrl: product['image'] ?? '',
-            fit: BoxFit.cover,
-            height: 150,  // Set a fixed height for uniformity
+             return Stack(
+             children:[
+             
+              // product layout
+               Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [
+                 GestureDetector(
+                   onTap: () {},
+                   child: ClipRRect(
+                     borderRadius: BorderRadius.circular(10),
+                     child: CachedNetworkImage(
+                       imageUrl: product['image'] ?? '',
+                       fit: BoxFit.cover,
+                       height: 150,  // Set a fixed height for uniformity
                 width: double.infinity,
-            placeholder: (context, url) => Shimmer.fromColors(
+                       placeholder: (context, url) => Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
               child: Container(
                 color: Colors.grey[200],
               ),
-            ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-        ),
-      ),
-      const SizedBox(height: 10),
-      Text(
-        product['name'] ?? 'No Name',
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Ensure price is handled as a number
-          Text(
-            '\$${(product['price'] is String ? double.tryParse(product['price']) : product['price']) ?? 0}',
-            style: const TextStyle(color: Colors.green, fontSize: 16),
-          ),
-          //const SizedBox(width: 30),
-          IconButton(
-            icon: const Icon(Icons.add_shopping_cart),
-            onPressed: () {
+                       ),
+                       errorWidget: (context, url, error) => const Icon(Icons.error),
+                     ),
+                   ),
+                 ),
+                 const SizedBox(height: 10),
+                 Text(
+                   product['name'] ?? 'No Name',
+                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                 ),
+                 Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                     // Ensure price is handled as a number
+                     Text(
+                       '\$${(product['price'] is String ? double.tryParse(product['price']) : product['price']) ?? 0}',
+                       style: const TextStyle(color: Colors.green, fontSize: 16),
+                     ),
+                     //const SizedBox(width: 30),
+                     IconButton(
+                       icon: const Icon(Icons.add_shopping_cart),
+                       onPressed: () {
               cartController.addProductToCart(product);
-            },
-          ),
-        ],
-      ),
-    ],
-  );
-  
-            },
-          ),
-        );
-      }),
-));
-  }
+                       },
+                     ),
+                   ],
+                 ),
+               ],
+             ),
 
+                // Love icon for wishlist
+            Positioned(
+              right: 0,
+              child: IconButton(
+                icon: wishlistController.isFavorite(product['id'])
+                    ? const Icon(Iconsax.heart5, color: Colors.red) // Filled red heart
+                    : const Icon(Iconsax.heart, color: Colors.red), // Outlined heart
+                onPressed: () {
+                  wishlistController.toggleFavoriteStatus(product);
+                },
+              ),
+            ), 
+         ]  );
+
+          },
+        ),
+      );
+    })));
+  }
   
   Widget _buildShimmerLoading() {
     return GridView.builder(

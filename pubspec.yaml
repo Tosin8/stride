@@ -40,6 +40,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   url_launcher: ^6.3.0
   geocoding: ^3.0.0
+  easy_stepper: ^0.8.5+1
   uuid: ^4.5.1
 
 dev_dependencies:

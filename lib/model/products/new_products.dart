@@ -93,8 +93,8 @@ final WishlistController wishlistController = Get.put(WishlistController());
               right: 0,
               child: IconButton(
                 icon: wishlistController.isFavorite(product['id'])
-                    ? const Icon(Iconsax.heart, color: Colors.red) // Filled red heart
-                    : const Icon(Iconsax.heart5, color: Colors.red), // Outlined heart
+                    ? const Icon(Iconsax.heart5, color: Colors.red) // Filled red heart
+                    : const Icon(Iconsax.heart, color: Colors.red), // Outlined heart
                 onPressed: () {
                   wishlistController.toggleFavoriteStatus(product);
                 },
