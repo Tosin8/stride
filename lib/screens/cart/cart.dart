@@ -6,7 +6,7 @@ import 'package:stride/controllers/cart_controller.dart';
 class CartPage extends StatelessWidget {
   final CartController cartController = Get.put(CartController());
 
-   CartPage({super.key});
+  CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,8 @@ class CartPage extends StatelessWidget {
 
                         var imageUrl = product['image'] ?? '';
                         var productName = product['name'] ?? 'Unknown Product';
-                        var priceString = product['price']?.toString() ?? '0';
-print('Product price: $priceString, Type: ${product['price'].runtimeType}');
-double price = double.tryParse(priceString) ?? 0.0;
-
+                        var price = product['price'] ?? 0.0;
+                        var quantity = product['quantity'] ?? 1;
 
                         return ListTile(
                           leading: CachedNetworkImage(
@@ -42,11 +40,29 @@ double price = double.tryParse(priceString) ?? 0.0;
                           ),
                           title: Text(productName),
                           subtitle: Text('\$${price.toStringAsFixed(2)}'),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              cartController.removeProductFromCart(product);
-                            },
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.remove),
+                                onPressed: () {
+                                  cartController.decreaseQuantity(product);
+                                },
+                              ),
+                              Text('$quantity'), // Display current quantity
+                              IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: () {
+                                  cartController.increaseQuantity(product);
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {
+                                  cartController.removeProductFromCart(product);
+                                },
+                              ),
+                            ],
                           ),
                         );
                       },
