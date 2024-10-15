@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     context: context,
                     builder: (context) => Container(
                       color: Colors.white,
-                      child: const ShoppingCart(),
+                      child: CartPage(),
                     ),
                   );
               }, icon: const Icon(Iconsax.shopping_cart)), 

@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:stride/controllers/cart_controller.dart';
 import 'package:stride/controllers/products/new_controller.dart';
 
 class ProductsGrid extends StatelessWidget {
   final ProductController productController = Get.put(ProductController());
+  final CartController cartController = Get.put(CartController());  // Initialize CartController
 
   ProductsGrid({super.key});
 
@@ -13,74 +15,62 @@ class ProductsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (productController.isLoading.value) {
-        // Shimmer effect while loading
         return _buildShimmerLoading();
       }
-
-      // Debugging: Print the number of products retrieved
-      print('Number of products retrieved: ${productController.products.length}');
 
       return SizedBox(
         height: 400,  // Define a specific height or use MediaQuery to make it dynamic
         child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),  // Disable scrolling inside the grid
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-              childAspectRatio: .63,
+            childAspectRatio: .63,
             crossAxisSpacing: 10,
-           
-        mainAxisSpacing: 4.0,
-           // mainAxisSpacing: 10,
+            mainAxisSpacing: 4.0,
           ),
-          itemCount: 4,
+          itemCount: productController.products.length,  // Display all products
           itemBuilder: (context, index) {
             var product = productController.products[index] as Map<String, dynamic>;
 
             return Column(
-             // mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Placeholder for product image
                 GestureDetector(
                   onTap: () {},
-                  child: Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        imageUrl: product['image'] ?? '',
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[100]!,
-                          child: Container(
-                            color: Colors.grey[200],
-                          ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      imageUrl: product['image'] ?? '',
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          color: Colors.grey[200],
                         ),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
                       ),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 ),
                 const SizedBox(height: 10),
-                // Product name
                 Text(
                   product['name'] ?? 'No Name',
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
-                // Product price
                 Row(
                   children: [
                     Text(
                       '\$${product['price'] ?? '0'}',
-                      style: const TextStyle(color: Colors.green, 
-                      fontSize: 16),
+                      style: const TextStyle(color: Colors.green, fontSize: 16),
                     ),
-                    const SizedBox(width: 30), 
-                     IconButton(
-                  icon: const Icon(Icons.add_shopping_cart),
-                  onPressed: () {
-                    cartController.addProductToCart(product);
-                  })
+                    const SizedBox(width: 30),
+                    IconButton(
+                      icon: const Icon(Icons.add_shopping_cart),
+                      onPressed: () {
+                        cartController.addProductToCart(product);
+                      },
+                    ),
                   ],
                 ),
               ],
@@ -91,6 +81,7 @@ class ProductsGrid extends StatelessWidget {
     });
   }
 
+  
   Widget _buildShimmerLoading() {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -138,3 +129,6 @@ class ProductsGrid extends StatelessWidget {
     );
   }
 }
+
+
+
