@@ -10,6 +10,7 @@ import 'package:stride/firebase_options.dart';
 
 import 'app.dart';
 import 'auth/repository/auth_repo.dart';
+import 'controllers/cart_controller.dart';
 
 
 
@@ -32,6 +33,7 @@ await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).th
      Get.put(
     AuthenticationRepository()); 
     Get.put(ProductController()); 
+     Get.put(CartController()); 
   }
 
   ); 

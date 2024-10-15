@@ -154,25 +154,26 @@ class _HomeScreenState extends State<HomeScreen> {
             
               // Display dynamic item count
               Obx(() {
-                return Positioned(
-                  top: -8,
-                  right: -3,
-                  child: Container(
-                    width: 18,
-                    height: 18,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${cartController.itemCount}', // Use the dynamic item count
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                );
-              }),
+  final itemCount = Get.find<CartController>().itemCount.value;
+  return Positioned(
+    top: -8,
+    right: -3,
+    child: Container(
+      width: 18,
+      height: 18,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.black,
+      ),
+      child: Center(
+        child: Text(
+          '$itemCount',
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    ),
+  );
+}),
             ],
           ),
           const SizedBox(width: 15),

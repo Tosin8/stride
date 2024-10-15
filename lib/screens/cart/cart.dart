@@ -11,8 +11,13 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
-        title: const Text('Shopping Cart'),
+        title: const Text('Shopping Cart', 
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+
       ),
       body: Obx(() {
         return Column(
