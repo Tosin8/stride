@@ -28,7 +28,9 @@ class CartPage extends StatelessWidget {
                         var imageUrl = product['image'] ?? '';
                         var productName = product['name'] ?? 'Unknown Product';
                         var priceString = product['price']?.toString() ?? '0';
-                        double price = double.tryParse(priceString) ?? 0.0;
+print('Product price: $priceString, Type: ${product['price'].runtimeType}');
+double price = double.tryParse(priceString) ?? 0.0;
+
 
                         return ListTile(
                           leading: CachedNetworkImage(

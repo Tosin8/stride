@@ -6,6 +6,11 @@ class CartController extends GetxController {
 
   // Add a product to the cart
   void addProductToCart(Map<String, dynamic> product) {
+    if (product['price'] is String) {
+    product['price'] = double.tryParse(product['price']) ?? 0.0;
+  } else if (product['price'] is int) {
+    product['price'] = product['price'].toDouble();
+  }
     cartItems.add(product);
     Get.snackbar(
       "Product Added",
