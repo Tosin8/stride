@@ -9,6 +9,8 @@ import 'package:stride/model/products/new_products.dart';
 import 'package:stride/screens/cart/cart.dart';
 import 'package:stride/screens/shop/home/widget/promo_slider.dart';
 import 'package:stride/utils/common/texts/header_title.dart';
+import 'package:stride/controllers/cart_controller.dart'; // Adjust this path based on your project structure
+
 
 import 'widget/new_arrival.dart';
 
@@ -150,24 +152,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
               }, icon: const Icon(Iconsax.shopping_cart)), 
             
-              Positioned(
-                top: -8,
-                right: -3,
-                child: Container(
-                  width: 18,
-                  height: 18,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.black,
-                  ),
-                  child: const Align(
-                    child: Text(
-                      '0',
-                      style: TextStyle(color: Colors.white),
+              // Display dynamic item count
+              Obx(() {
+                return Positioned(
+                  top: -8,
+                  right: -3,
+                  child: Container(
+                    width: 18,
+                    height: 18,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black,
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${cartController.itemCount}', // Use the dynamic item count
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              )
+                );
+              }),
             ],
           ),
           const SizedBox(width: 15),
