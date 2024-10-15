@@ -88,177 +88,179 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      appBar: AppBar(
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        leading: const Icon(Iconsax.menu),
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.only(top: 62),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Iconsax.location),
-              const SizedBox(width: 5),
-              Text(
-                _currentLocation,
-                style: const TextStyle(color: Colors.black),
-              ),
-            ],
+        appBar: AppBar(
+          backgroundColor: Colors.grey.shade100,
+          leading: const Icon(Iconsax.menu),
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.only(top: 62),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Iconsax.location),
+                const SizedBox(width: 5),
+                Text(
+                  _currentLocation,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
           ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              print('notification tapped');
-            },
-            child: Stack(
+          actions: [
+            GestureDetector(
+              onTap: () {
+                print('notification tapped');
+              },
+              child: Stack(
+                fit: StackFit.passthrough,
+                clipBehavior: Clip.none,
+                children: [
+                  const Icon(Iconsax.notification),
+                  Positioned(
+                    top: -8,
+                    right: -3,
+                    child: Container(
+                      width: 18,
+                      height: 18,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(width: 7),
+            Stack(
               fit: StackFit.passthrough,
               clipBehavior: Clip.none,
               children: [
-                const Icon(Iconsax.notification),
-                Positioned(
-                  top: -8,
-                  right: -3,
-                  child: Container(
-                    width: 18,
-                    height: 18,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        '2',
-                        style: TextStyle(color: Colors.white),
+                IconButton(onPressed: (){
+                   showBarModalBottomSheet(
+                      context: context,
+                      builder: (context) => Container(
+                        color: Colors.white,
+                        child: CartPage(),
+                      ),
+                    );
+                }, icon: const Icon(Iconsax.shopping_cart)), 
+              
+                // Display dynamic item count
+                Obx(() {
+        final itemCount = Get.find<CartController>().itemCount.value;
+        return Positioned(
+      top: -8,
+      right: -3,
+      child: Container(
+        width: 18,
+        height: 18,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
+        ),
+        child: Center(
+          child: Text(
+            '$itemCount',
+           
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+        );
+      }),
+              ],
+            ),
+            const SizedBox(width: 15),
+          ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(65),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Iconsax.search_normal),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.search,
+                              onFieldSubmitted: (value) {
+                                // Handle search action here
+                              },
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Search your sneakers",
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                )
-              ],
+                  const SizedBox(width: 10),
+                  Container(
+                    height: 45,
+                    width: 45,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Iconsax.sort,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          const SizedBox(width: 7),
-          Stack(
-            fit: StackFit.passthrough,
-            clipBehavior: Clip.none,
-            children: [
-              IconButton(onPressed: (){
-                 showBarModalBottomSheet(
-                    context: context,
-                    builder: (context) => Container(
-                      color: Colors.white,
-                      child: CartPage(),
-                    ),
-                  );
-              }, icon: const Icon(Iconsax.shopping_cart)), 
-            
-              // Display dynamic item count
-              Obx(() {
-  final itemCount = Get.find<CartController>().itemCount.value;
-  return Positioned(
-    top: -8,
-    right: -3,
-    child: Container(
-      width: 18,
-      height: 18,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.black,
-      ),
-      child: Center(
-        child: Text(
-          '$itemCount',
-         
-          style: const TextStyle(color: Colors.white),
         ),
-      ),
-    ),
-  );
-}),
-            ],
-          ),
-          const SizedBox(width: 15),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(65),
+      
+        // Body.
+        body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Iconsax.search_normal),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            textInputAction: TextInputAction.search,
-                            onFieldSubmitted: (value) {
-                              // Handle search action here
-                            },
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Search your sneakers",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                const PromoSlider(),
+                const SizedBox(height: 10),
+                HeaderTitle(
+                  text: 'New Arrival',
+                  onPressed: () {
+                    Get.to(() => const NewArrivalScreen());
+                  },
                 ),
-                const SizedBox(width: 10),
-                Container(
-                  height: 45,
-                  width: 45,
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Iconsax.sort,
-                    color: Colors.white,
-                  ),
+                ProductsGrid(),
+                const SizedBox(height: 10),
+                HeaderTitle(
+                  text: 'Popular',
+                  onPressed: () {
+                    Get.to(() => const NewArrivalScreen());
+                  },
                 ),
+                 ProductsGrid(),
               ],
             ),
-          ),
-        ),
-      ),
-
-      // Body.
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const PromoSlider(),
-              const SizedBox(height: 10),
-              HeaderTitle(
-                text: 'New Arrival',
-                onPressed: () {
-                  Get.to(() => const NewArrivalScreen());
-                },
-              ),
-              ProductsGrid(),
-              const SizedBox(height: 10),
-              HeaderTitle(
-                text: 'Popular',
-                onPressed: () {
-                  Get.to(() => const NewArrivalScreen());
-                },
-              ),
-               ProductsGrid(),
-            ],
           ),
         ),
       ),
