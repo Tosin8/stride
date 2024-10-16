@@ -7,7 +7,8 @@ import 'package:stride/auth/repository/user_repo.dart';
 import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
-import 'usertile/usertile.dart';
+import 'usertile.dart';
+import 'usertile/payment_card.dart';
 
 class UserProfile extends StatelessWidget {
   final userRepo = UserRepository.instance;
@@ -68,7 +69,9 @@ class UserProfile extends StatelessWidget {
                 ),
                 // payment card
                 Usertile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const PaymentCard());
+                  },
                   subtitle: 'Securely store and manage your payment methods.',
                   text: 'Payment Cards',
                   leading: Iconsax.card,
