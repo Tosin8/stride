@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
@@ -29,7 +31,9 @@ class UserProfile extends StatelessWidget {
           
               // personal data
               Usertile(
-                onTap: (){}, 
+                onTap: (){
+                  Get.to(() => const PersonalData()); 
+                }, 
                 text: 'Personal Data', leading: Iconsax.user, ), 
           
           // payment card
