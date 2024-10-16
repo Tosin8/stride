@@ -4,9 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stride/auth/repository/user_repo.dart';
 import 'package:stride/model/user_model.dart';
-
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:connectivity_plus/connectivity_plus.dart'; // For network checking
 
 class PersonalData extends StatefulWidget {
   final UserModel user;
@@ -30,7 +29,7 @@ class _PersonalDataState extends State<PersonalData> {
   // Password visibility states
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
-  
+
   bool _isLoading = false;
 
   // Image picker variables
@@ -109,12 +108,24 @@ class _PersonalDataState extends State<PersonalData> {
     return null;
   }
 
-  void _updateInfo() async {
+  Future<void> _updateInfo() async {
+    // Check if the form is valid
     if (_formKey.currentState!.validate()) {
       // Show progress indicator while updating
       setState(() {
         _isLoading = true;
       });
+
+      // Check network availability before proceeding with the update
+      var connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult == ConnectivityResult.none) {
+        // No network available, show a message and stop the loading state
+        _showSnackbar('Network Issue', 'Network is not available at the moment, try again later', ContentType.failure);
+        setState(() {
+          _isLoading = false;
+        });
+        return; // Exit function
+      }
 
       // Prepare updated user data
       UserModel updatedUser = widget.user.copyWith(
@@ -270,7 +281,7 @@ class _PersonalDataState extends State<PersonalData> {
                         icon: Icon(_obscurePassword ? Iconsax.eye_slash : Iconsax.eye),
                         onPressed: _togglePasswordView,
                       ),
-                      border: const OutlineInputBorder(
+                      border:                   const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                     ),
@@ -303,7 +314,7 @@ class _PersonalDataState extends State<PersonalData> {
                   const SizedBox(height: 20),
                   _isLoading
                       ? const CircularProgressIndicator()
-                       : ElevatedButton(
+                      : ElevatedButton(
                           onPressed: _updateInfo,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
@@ -321,7 +332,7 @@ class _PersonalDataState extends State<PersonalData> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                       ), 
+                        ),
                 ],
               ),
             ),
@@ -331,3 +342,4 @@ class _PersonalDataState extends State<PersonalData> {
     );
   }
 }
+
