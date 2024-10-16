@@ -122,10 +122,8 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'add_payment_card.dart';
 
@@ -137,43 +135,36 @@ class PaymentCard extends StatefulWidget {
 }
 
 class _PaymentCardState extends State<PaymentCard> {
-  final FlutterSecureStorage storage = const FlutterSecureStorage();
-  List<Map<String, String>> cardList = [];
+  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+  String? cardNumber;
+  String? expiryDate;
+  String? cardHolderName;
+  String? cvvCode;
 
   @override
   void initState() {
     super.initState();
-    _loadCards(); // Load existing cards from secure storage
+    _loadCards();
   }
 
   Future<void> _loadCards() async {
-    String? cards = await storage.read(key: 'cards');
-    if (cards != null) {
-      List<String> storedCards = cards.split(';');
-      setState(() {
-        cardList = storedCards.map((card) {
-          List<String> details = card.split(',');
-          return {
-            'cardHolderName': details[0],
-            'cardNumber': details[1],
-            'expiryDate': details[2],
-            'cardType': details[3],
-          };
-        }).toList();
-      });
-    }
+    cardNumber = await secureStorage.read(key: 'cardNumber');
+    expiryDate = await secureStorage.read(key: 'expiryDate');
+    cardHolderName = await secureStorage.read(key: 'cardHolderName');
+    cvvCode = await secureStorage.read(key: 'cvvCode');
+    setState(() {});
   }
 
-  Future<void> _removeCard(int index) async {
-    setState(() {
-      cardList.removeAt(index);
-    });
+  void _deleteCard() async {
+    await secureStorage.delete(key: 'cardNumber');
+    await secureStorage.delete(key: 'expiryDate');
+    await secureStorage.delete(key: 'cardHolderName');
+    await secureStorage.delete(key: 'cvvCode');
+    _loadCards(); // Reload cards after deletion
 
-    await storage.write(key: 'cards', value: cardList.map((card) => 
-      '${card['cardHolderName']},${card['cardNumber']},${card['expiryDate']},${card['cardType']}').join(';'));
-      
-    Get.snackbar('Success', 'Credit card has been removed', 
-      snackPosition: SnackPosition.BOTTOM, duration: const Duration(seconds: 2));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Credit card has been removed')),
+    );
   }
 
   @override
@@ -182,89 +173,78 @@ class _PaymentCardState extends State<PaymentCard> {
       appBar: AppBar(
         title: const Text('Payment Cards'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: cardList.isEmpty
-            ? const Center(child: Text('No payment card added'))
-            : ListView.builder(
-                itemCount: cardList.length,
-                itemBuilder: (context, index) {
-                  final card = cardList[index];
-                  return Column(
-                    children: [
-                      _buildCardWidget(card, index),
-                      if (index < cardList.length - 1) const Divider(),
-                    ],
-                  );
-                },
-              ),
-      ),
-     bottomSheet: Padding(
-  padding: const EdgeInsets.all(8.0),
-  child: GestureDetector(
-    onTap: () async {
-      await Get.to(() => const AddPaymentCard()); // Await the navigation
-      _loadCards(); // Reload cards after coming back from AddPaymentCard screen
-    },
-    child: Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(11),
-        color: Colors.black,
-      ),
-      height: 60,
-      child: const Center(
-        child: Text('Add Payment Card', style: TextStyle(color: Colors.white)),
-      ),
-    ),
-  ),
-),
-    );
-  }
-
-  Widget _buildCardWidget(Map<String, String> card, int index) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image(
-          image: AssetImage(
-            card['cardType'] == 'Visa'
-                ? 'assets/icons/visa.png'
-                : 'assets/icons/master-card.png',
-          ),
-          width: 50,
-        ),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              card['cardHolderName'] ?? '',
-              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-            ),
-            Text(
-              card['cardNumber']?.replaceRange(4, card['cardNumber']!.length - 4, '*' * (card['cardNumber']!.length - 8)) ?? '',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            Row(
-              children: [
-                Text(
-                  card['expiryDate'] ?? '',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              // Show "No payment card added" if no card is stored
+              if (cardNumber == null) 
+                const Text('No payment card added'),
+              if (cardNumber != null) ...[
+                // Credit Card Display
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Image(image: AssetImage('assets/icons/master-card.png'), width: 50),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(cardHolderName ?? '', style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
+                        Text(cardNumber?.replaceRange(4, 16, '************') ?? '', 
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                        Row(
+                          children: [
+                            Text(expiryDate ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(width: 30),
+                            Text(cvvCode ?? ''),
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(width: 130),
+                    Expanded(
+                      flex: 2,
+                      child: IconButton(
+                        onPressed: _deleteCard, 
+                        icon: const Icon(Icons.delete, color: Colors.red)
+                      )
+                    )
+                  ],
                 ),
-                const SizedBox(width: 30),
-                const Text('***'), // Masking CVV for security
+                const SizedBox(height: 20),
+                const Divider(),
+                const SizedBox(height: 20),
               ],
-            ),
-          ],
+            ],
+          ),
         ),
-        IconButton(
-          onPressed: () {
-            _removeCard(index);
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            Get.to(() => const AddPaymentCard())?.then((_) {
+              _loadCards(); // Reload cards after coming back from AddPaymentCard screen
+            });
           },
-          icon: const Icon(Iconsax.trash, color: Colors.red),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(11),
+              color: Colors.black,
+            ),
+            height: 50,
+            child: const Center(
+              child: Text(
+                'Add New Card',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
+          ),
         ),
-      ],
+      ),
     );
   }
 }
