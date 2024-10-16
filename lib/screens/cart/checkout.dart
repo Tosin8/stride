@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_stepper/easy_stepper.dart';
+import 'package:iconsax/iconsax.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
@@ -20,6 +21,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             EasyStepper(
               activeStep: currentStep,
@@ -107,16 +110,102 @@ class _ShippingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text('Enter Shipping Information'),
-        // Add your shipping form fields here
-        ElevatedButton(
-          onPressed: onNext,
-          child: const Text('Next'),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Enter Shipping Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+          const SizedBox(height: 10,),
+           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Icon(Icons.check_box,),
+              const SizedBox(width: 18,), 
+              const Expanded(
+                child: Column(
+                  
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Home Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text('123 Main Street, Anytown, USA 12345'),
+                    Text('Phone: (555) 555-5555'),
+                  ],
+                ),
+              ),
+              TextButton(onPressed: (){}, 
+              child: const Text('Change'))
+            ],
+          ), 
+
+          // store. 
+           const SizedBox(height: 15,),
+           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Icon(Icons.check_box_outline_blank,),
+              const SizedBox(width: 18,), 
+              const Expanded(
+                child: Column(
+                  
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Pickup Point', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text('123 Main Street, Anytown, USA 12345'),
+                    Text('Phone: (555) 555-5555'),
+                  ],
+                ),
+              ),
+              TextButton(onPressed: (){}, 
+              child: const Text('Change'))
+            ],
+          ), 
+         const SizedBox(height: 15,), 
+         const Divider(), 
+         const SizedBox(height: 15,),
+         const Text('Delivery Options', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+         const SizedBox(height: 15,), 
+         const Row(
+          children: [
+            Icon(Icons.check_box,),
+            SizedBox(width: 18,), 
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Standard Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                Text('Delivered on or before Monday, 23 April 2024', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
+              ],
+            ),
+
+          ],
+         ), 
+          const SizedBox(height: 15,), 
+         const Row(
+          children: [
+            Icon(Icons.check_box_outline_blank_outlined,),
+            SizedBox(width: 18,), 
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Express Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                Text('Delivered on or before Monday, 13 April 2024', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
+              ],
+            ),
+
+          ],
+         ), 
+          // Add your shipping form fields here
+          ElevatedButton(
+            onPressed: onNext,
+            child: const Text('Proceed'),
+          ),
+        ],
+      ),
     );
   }
 }
