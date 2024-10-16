@@ -34,3 +34,51 @@ class ProductModel {
         description = data[DESCRIPTION],
         isFavorite = data[IS_FAVORITE] ?? false;  // Handle the new field
 }
+
+
+// import 'package:hive/hive.dart';
+
+// // This will be generated
+
+// @HiveType(typeId: 0)  // Assign a unique typeId
+// class ProductModel extends HiveObject {
+//   @HiveField(0)
+//   late String id;
+
+//   @HiveField(1)
+//   late String image;
+
+//   @HiveField(2)
+//   late String name;
+
+//   @HiveField(3)
+//   late String brand;
+
+//   @HiveField(4)
+//   late double price;
+
+//   @HiveField(5)
+//   late String description;
+
+//   @HiveField(6)
+//   bool isFavorite;
+
+//   ProductModel({
+//     required this.id,
+//     required this.image,
+//     required this.name,
+//     required this.brand,
+//     required this.price,
+//     required this.description,
+//     this.isFavorite = false,
+//   });
+
+//   ProductModel.fromMap(Map<String, dynamic> data)
+//       : id = data['id'],
+//         image = data['image'],
+//         name = data['name'],
+//         brand = data['brand'] ?? '',
+//         price = double.tryParse(data['price'].toString()) ?? 0.0,
+//         description = data['description'],
+//         isFavorite = data['isFavorite'] ?? false;
+// }

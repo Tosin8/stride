@@ -77,13 +77,5 @@ class UserModel {
     }
   }
 
-  // static List<CartItemModel> _convertCartItems(List<dynamic> cartFromDb) {
-  //   List<CartItemModel> result = [];
-  //   for (var element in cartFromDb) {
-  //     result.add(CartItemModel.fromMap(element));
-  //   }
-  //   return result;
-  // }
-
-  // List cartItemsToJson() => cart.map((item) => item.toJson()).toList();
+ 
 }

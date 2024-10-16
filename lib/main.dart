@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:stride/auth/repository/user_repo.dart';
 import 'package:stride/controllers/products/new_controller.dart';
 import 'package:stride/controllers/products/wishlist_controller.dart';
 
 import 'package:stride/firebase_options.dart';
+import 'package:stride/model/products/product_model.dart';
 
 import 'app.dart';
 import 'auth/repository/auth_repo.dart';
@@ -36,6 +40,7 @@ await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).th
     Get.put(ProductController()); 
      Get.put(CartController()); 
      Get.put(WishlistController()); 
+     Get.put(UserRepository()); 
   }
 
   ); 

@@ -125,6 +125,6 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     const Store(),
      Wishlist(),
-    const UserProfile(),
+    UserProfile(),
   ];
 }
