@@ -9,7 +9,7 @@ import 'package:stride/model/products/new_products.dart';
 import 'package:stride/screens/cart/cart.dart';
 import 'package:stride/screens/shop/home/widget/promo_slider.dart';
 import 'package:stride/utils/common/texts/header_title.dart';
-import 'package:stride/controllers/cart_controller.dart'; // Adjust this path based on your project structure
+// Adjust this path based on your project structure
 
 
 import 'widget/new_arrival.dart';

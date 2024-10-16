@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride/auth/repository/auth_repo.dart';
 import 'package:stride/auth/repository/user_repo.dart';
+import 'package:stride/model/user_model.dart';
 
 import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 
@@ -60,7 +61,8 @@ class UserProfile extends StatelessWidget {
                 Usertile(
                   subtitle: 'Manage your account details here',
                   onTap: () {
-                    Get.to(() => const PersonalData());
+                    final user = userRepo.userModel.value;
+                    Get.to(() =>  PersonalData(user: user));
                   },
                   text: 'Personal Data',
                   leading: Iconsax.user,
@@ -71,6 +73,15 @@ class UserProfile extends StatelessWidget {
                   subtitle: 'Securely store and manage your payment methods.',
                   text: 'Payment Cards',
                   leading: Iconsax.card,
+                ),
+                // addresses
+                 // 
+                 
+                Usertile(
+                  onTap: () {},
+                  subtitle: 'Save your delivery addresses along with your beneficiaries.',
+                  text: 'Addresses',
+                  leading: Iconsax.house_2,
                 ),
                 // settings
                 Usertile(
