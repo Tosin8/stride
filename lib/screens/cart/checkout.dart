@@ -54,26 +54,26 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
             ),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                if (currentStep > 0)
-                  ElevatedButton(
-                    onPressed: _goToPreviousStep,
-                    child: const Text('Back'),
-                  ),
-                if (currentStep < 2)
-                  ElevatedButton(
-                    onPressed: _goToNextStep,
-                    child: const Text('Next'),
-                  ),
-                if (currentStep == 2)
-                  ElevatedButton(
-                    onPressed: _placeOrder,
-                    child: const Text('Place Order'),
-                  ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     if (currentStep > 0)
+            //       ElevatedButton(
+            //         onPressed: _goToPreviousStep,
+            //         child: const Text('Back'),
+            //       ),
+            //     if (currentStep < 2)
+            //       ElevatedButton(
+            //         onPressed: _goToNextStep,
+            //         child: const Text('Next'),
+            //       ),
+            //     if (currentStep == 2)
+            //       ElevatedButton(
+            //         onPressed: _placeOrder,
+            //         child: const Text('Place Order'),
+            //       ),
+            //   ],
+            // ),
           ],
         ),
       ),
@@ -177,7 +177,12 @@ class _ShippingPage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Standard Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                Row(
+                  children: [
+                    Text('Free', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),), 
+                    Text(' Standard Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
+                  ],
+                ),
                 Text('Delivered on or before Monday, 23 April 2024', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
               ],
             ),
@@ -192,18 +197,36 @@ class _ShippingPage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Express Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                Row(
+                  children: [
+                     Text('\$10', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                    Text(' Express Delivery', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                  ],
+                ),
                 Text('Delivered on or before Monday, 13 April 2024', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
               ],
             ),
 
           ],
          ), 
+
           // Add your shipping form fields here
-          ElevatedButton(
-            onPressed: onNext,
-            child: const Text('Proceed'),
-          ),
+          const SizedBox(height: 100,),
+          GestureDetector(
+            onTap: onNext, 
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.all(Radius.circular(8)),),
+              width: double.infinity,
+              child: const Align(child: Text('Proceed to Payment', style: TextStyle(color: Colors.white,fontSize: 18),)),),
+          ), 
+
+          // ElevatedButton(
+          //   onPressed: onNext,
+          //   child: const Text('Proceed to Payment'),
+          // ),
         ],
       ),
     );
@@ -221,7 +244,7 @@ class _PaymentPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Enter Payment Information'),
+        const Text('Payment Method'),
         // Add your payment form fields here
         ElevatedButton(
           onPressed: onNext,
