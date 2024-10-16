@@ -10,6 +10,17 @@ class PersonalData extends StatefulWidget {
 class _PersonalDataState extends State<PersonalData> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return  SafeArea(
+      child: Scaffold(  
+        appBar: AppBar( 
+          title: const Text('Personal Data'), 
+          centerTitle: true,
+        ),
+
+        body: const Column(
+          children: [],
+        )
+      ),
+    );
   }
 }
