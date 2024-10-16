@@ -58,6 +58,7 @@ flutter:
   
   assets:
     - assets/splash.jpg
+    - assets/user.png
 
     #icons
     - assets/icons/menu_32.png

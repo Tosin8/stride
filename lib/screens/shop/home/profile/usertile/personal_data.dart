@@ -205,10 +205,11 @@ class _PersonalDataState extends State<PersonalData> {
                               ? FileImage(_imageFile!)
                               : widget.user.profilePicture.isNotEmpty
                                   ? NetworkImage(widget.user.profilePicture)
-                                  : const AssetImage('assets/default_avatar.png')
+                                  : const AssetImage('assets/user.png')
                                       as ImageProvider,
                           child: _imageFile == null && widget.user.profilePicture.isEmpty
-                              ? const Icon(Iconsax.user, size: 40)
+                              ? //const Icon(Iconsax.user, size: 40)
+                              null
                               : null,
                         ),
                   Positioned(

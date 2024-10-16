@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'bindings/general_binding.dart';
@@ -32,11 +33,25 @@ class MyApp extends StatelessWidget {
       // darkTheme: BAppTheme.darkTheme,
       initialBinding: GeneralBindings(),
       getPages: AppRoutes.pages,
-      home: const Scaffold(
+      home:  const Scaffold(
         backgroundColor: BColors.primary, 
         body: Center(
-          child: CircularProgressIndicator(
-            color: Colors.white),))
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               Text(
+                      'Stride',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontFamily: 'Maturascript',
+                      ),
+                    ),
+                    SizedBox(height: 10,), 
+              CircularProgressIndicator(
+                color: Colors.white),
+            ],
+          ),))
       
       //const OnBoardingScreen()
     ); 

@@ -1,14 +1,13 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:stride/auth/forms/login.dart';
 import 'package:stride/auth/repository/auth_repo.dart';
 import 'package:stride/auth/repository/user_repo.dart';
-import 'package:stride/model/user_model.dart';
-
 import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
+import 'usertile/usertile.dart';
 
 class UserProfile extends StatelessWidget {
   final userRepo = UserRepository.instance;
@@ -34,7 +33,7 @@ class UserProfile extends StatelessWidget {
                     radius: 30,
                     backgroundImage: user.profilePicture.isNotEmpty
                         ? NetworkImage(user.profilePicture)
-                        : const AssetImage('assets/default_profile.png')
+                        : const AssetImage('assets/user.png')
                             as ImageProvider,
                     backgroundColor: Colors.grey,
                   ),
@@ -62,7 +61,7 @@ class UserProfile extends StatelessWidget {
                   subtitle: 'Manage your account details here',
                   onTap: () {
                     final user = userRepo.userModel.value;
-                    Get.to(() =>  PersonalData(user: user));
+                    Get.to(() => PersonalData(user: user));
                   },
                   text: 'Personal Data',
                   leading: Iconsax.user,
@@ -75,8 +74,6 @@ class UserProfile extends StatelessWidget {
                   leading: Iconsax.card,
                 ),
                 // addresses
-                 // 
-                 
                 Usertile(
                   onTap: () {},
                   subtitle: 'Save your delivery addresses along with your beneficiaries.',
@@ -85,8 +82,7 @@ class UserProfile extends StatelessWidget {
                 ),
                 // settings
                 Usertile(
-                  subtitle:
-                      'Customize your app preferences, privacy, and options.',
+                  subtitle: 'Customize your app preferences, privacy, and options.',
                   onTap: () {},
                   text: 'Settings',
                   leading: Iconsax.setting,
@@ -105,33 +101,32 @@ class UserProfile extends StatelessWidget {
                   text: 'Notifications',
                   leading: Iconsax.message,
                 ),
-                 Usertile(
-                 subtitle: 'Review and rate your recent purchases.',
-               onTap: (){}, 
-               text: 'Pending Reviews', leading: Iconsax.activity, ), 
-                
-
-                const SizedBox(height: 4,) , 
-              const Divider(), 
-             const SizedBox(height: 4,), 
-          
-              // personal data
-                        Usertile(
-               subtitle: 'Find answers to common questions and issues',
-               onTap: (){}, 
-          text: 'FAQs', leading: Icons.question_answer, ), 
-          
-                // settings 
-                                 Usertile(
-                subtitle: 'Get help and support for any inquiries.',
-              onTap: (){}, 
-               text: 'Customer Care', leading: Icons.phone, ),
-
-                const SizedBox(height: 4,) , 
-              const Divider(), 
-              const SizedBox(height: 10,), 
-          
-              
+                Usertile(
+                  subtitle: 'Review and rate your recent purchases.',
+                  onTap: () {},
+                  text: 'Pending Reviews',
+                  leading: Iconsax.activity,
+                ),
+                const SizedBox(height: 4,),
+                const Divider(),
+                const SizedBox(height: 4,),
+                // FAQs
+                Usertile(
+                  subtitle: 'Find answers to common questions and issues',
+                  onTap: () {},
+                  text: 'FAQs',
+                  leading: Icons.question_answer,
+                ),
+                // Customer Care
+                Usertile(
+                  subtitle: 'Get help and support for any inquiries.',
+                  onTap: () {},
+                  text: 'Customer Care',
+                  leading: Icons.phone,
+                ),
+                const SizedBox(height: 4,),
+                const Divider(),
+                const SizedBox(height: 10,),
                 // Log out
                 Usertile(
                   subtitle: 'Log out of your account.',
@@ -149,24 +144,26 @@ class UserProfile extends StatelessWidget {
                     onTap: () async {
                       bool confirm = await _confirmDeleteAccount(context);
                       if (confirm) {
-                        await authRepo.deleteAccount();
+                        _showReauthenticateBottomSheet(context);
                       }
                     },
                     child: Container(
                       height: 50,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Colors.red,
-                          )),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.red,
+                        ),
+                      ),
                       child: const Align(
                         child: Text(
                           'Delete Account',
                           style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.red,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -201,53 +198,93 @@ class UserProfile extends StatelessWidget {
           ],
         );
       },
-    ) ??
-        false;
+    ) ?? false;
   }
-}
 
-class Usertile extends StatelessWidget {
-  const Usertile({
-    super.key,
-    required this.text,
-    required this.subtitle,
-    this.onTap,
-    required this.leading,
-  });
+  // Method to show the reauthenticate form in a modal bottom sheet
+  void _showReauthenticateBottomSheet(BuildContext context) {
+    final TextEditingController passwordController = TextEditingController();
 
-  final String text;
-  final String subtitle;
-  final void Function()? onTap;
-  final IconData leading;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: ListTile(
-        leading: Container(
-          height: 38,
-          width: 38,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            color: Colors.white,
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Reauthenticate to Continue',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black, 
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))), 
+                ),
+                onPressed: () async {
+                  final email = userRepo.userModel.value.email; // Get email from user model
+                  await _handleReauthentication(context, email, passwordController.text.trim());
+                },
+                child: const Text('Permanently Delete My Account', 
+                style: TextStyle(color: Colors.white),),
+              ),
+            ],
           ),
-          child: Icon(
-            leading,
-            color: Colors.black,
-          ),
-        ),
-        title: Text(
-          text,
-          style: const TextStyle(fontWeight: FontWeight.w500),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: const TextStyle(fontSize: 13),
-        ),
-        trailing: const Icon(Iconsax.arrow_right),
-      ),
+        );
+      },
     );
+  }
+
+  // Method to handle reauthentication and account deletion
+  Future<void> _handleReauthentication(BuildContext context, String email, String password) async {
+    try {
+      // Reauthenticate the user
+      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(email, password);
+
+      // If successful, proceed to delete the user account
+      await AuthenticationRepository.instance.deleteAccount();
+      await UserRepository.instance.removeUserRecord(userRepo.userModel.value.id); // Assuming there's an ID in the user model
+
+      // Show success snackbar
+      _showSnackbar(context, 'Success', 'Your account has been successfully deleted.', ContentType.success);
+
+      // Redirect to login screen
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const LoginScreen()), // Adjust to your LoginScreen path
+        (Route<dynamic> route) => false,
+      );
+    } catch (e) {
+      // If there's an error (wrong credentials, etc.), show an error snackbar
+      _showSnackbar(context, 'Error', 'Failed to delete account: ${e.toString()}', ContentType.failure);
+    }
+  }
+
+  // Method to show snackbar using AwesomeSnackbarContent
+  void _showSnackbar(BuildContext context, String title, String message, ContentType type) {
+    final snackBar = SnackBar(
+      content: AwesomeSnackbarContent(
+        title: title,
+        message: message,
+        contentType: type,
+      ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
