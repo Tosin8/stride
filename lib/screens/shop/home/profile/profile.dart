@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
@@ -12,20 +11,34 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
+      child: Scaffold(
+        appBar: AppBar(
+          
+          bottom: const PreferredSize(preferredSize: Size.fromHeight(40),
+           child: Padding(
+             padding: EdgeInsets.all(4.0),
+             child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30, 
+                    backgroundColor: Colors.grey,
+                    
+                  ),
+                  title: Text('John Doe', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                  subtitle: Text('johndoe@gmail.com'),
+                  
+                ),
+           ), 
+              
+              ),
+            
+        ),
+      
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const ListTile(
-                leading: CircleAvatar(
-                  radius: 30, 
-                  backgroundColor: Colors.grey,
-                  
-                ),
-                title: Text('John Doe', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-                subtitle: Text('johndoe@gmail.com'),
-              ), 
+             
           
               const SizedBox(height: 4,) , 
               const Divider(), 
@@ -116,7 +129,7 @@ class UserProfile extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }
 

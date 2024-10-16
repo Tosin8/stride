@@ -155,28 +155,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 }, icon: const Icon(Iconsax.shopping_cart)), 
               
                 // Display dynamic item count
-                Obx(() {
-        final itemCount = Get.find<CartController>().itemCount.value;
-        return Positioned(
-      top: -8,
-      right: -3,
-      child: Container(
-        width: 18,
-        height: 18,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.black,
-        ),
-        child: Center(
-          child: Text(
-            '$itemCount',
+      //           Obx(() {
+      //   final itemCount = Get.find<CartController>().itemCount.value;
+      //   return Positioned(
+      // top: -8,
+      // right: -3,
+      // child: Container(
+      //   width: 18,
+      //   height: 18,
+      //   decoration: const BoxDecoration(
+      //     shape: BoxShape.circle,
+      //     color: Colors.black,
+      //   ),
+      //   child: Center(
+      //     child: Text(
+      //       '$itemCount',
            
-            style: const TextStyle(color: Colors.white),
-          ),
-        ),
-      ),
-        );
-      }),
+      //       style: const TextStyle(color: Colors.white),
+      //     ),
+      //   ),
+      // ),
+      //   );
+      // }),
               ],
             ),
             const SizedBox(width: 15),
