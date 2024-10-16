@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:stride/auth/forms/login.dart';
 import 'package:stride/auth/repository/auth_repo.dart';
 import 'package:stride/auth/repository/user_repo.dart';
@@ -123,7 +124,34 @@ class UserProfile extends StatelessWidget {
                 // Customer Care
                 Usertile(
                   subtitle: 'Get help and support for any inquiries.',
-                  onTap: () {},
+                  onTap: () {
+                    showBarModalBottomSheet(context: context,
+                     builder: (context) => Container(
+                      color: Colors.white,
+                      child:  Column(
+                        children: [
+                          const SizedBox(height: 10,),
+                          const Text('Select your Option', style: TextStyle(color: Colors.black, fontSize: 18),),
+                          const SizedBox(height: 10,),
+                          Usertile(
+                            onTap: () {},
+                            subtitle: 'Get into direct call with us.',
+                            text: 'Call Us',
+                            leading: Icons.phone, 
+                          ),
+                          const SizedBox(height: 10,),
+                          const Divider(), 
+                           const SizedBox(height: 10,),
+                          Usertile(
+                            onTap: () {},
+                            subtitle: 'Get into direct chat with us.',
+                            text: 'Direct Chat',
+                            leading: Icons.chat_bubble, 
+                          ),
+                        ],
+                      ),
+                     ));
+                  },
                   text: 'Customer Care',
                   leading: Icons.phone,
                 ),

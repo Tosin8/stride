@@ -40,6 +40,15 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
             _buildCardForm(),
             const SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),  
+                padding: const EdgeInsets.all(20),
+                
+                
+              ), 
               onPressed: _onValidate,
               child: const Text('Add Card'),
             ),

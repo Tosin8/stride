@@ -94,7 +94,14 @@ class CartPage extends StatelessWidget {
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
                     onPressed: () {
+                      
                       if (cartController.totalPrice > 0) {
                         // Navigate to checkout or payment
                         Get.toNamed('/checkout');
