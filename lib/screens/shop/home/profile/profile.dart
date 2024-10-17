@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:stride/auth/forms/login.dart';
 import 'package:stride/auth/repository/auth_repo.dart';
 import 'package:stride/auth/repository/user_repo.dart';
+import 'package:stride/screens/shop/home/profile/usertile/customer_care/livechat.dart';
 import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'usertile.dart';
-import 'usertile/callus.dart';
 import 'usertile/payment_card.dart';
 
 class UserProfile extends StatelessWidget {
@@ -17,9 +18,24 @@ class UserProfile extends StatelessWidget {
   final authRepo = AuthenticationRepository.instance;
 
   UserProfile({super.key});
+final String phoneNumber = '1234567890';
+void _launchDialer() async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      throw 'Could not launch $launchUri';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -138,8 +154,12 @@ class UserProfile extends StatelessWidget {
                             const Text('Select your Option', style: TextStyle(color: Colors.black, fontSize: 18),),
                             const SizedBox(height: 10,),
                             Usertile(
-                              onTap: () {
-                                Get.to(() => const CallUs()); 
+                              onTap: () async {
+                                // for indirect phone call. 
+                              // launchUrl(Uri.parse('tel://$phoneNumber'));
+
+                              // for direct phone call. 
+                              await FlutterPhoneDirectCaller.callNumber(phoneNumber);
                               },
                               subtitle: 'Get into direct call with us.',
                               text: 'Call Us',
@@ -149,9 +169,11 @@ class UserProfile extends StatelessWidget {
                             const Divider(), 
                              const SizedBox(height: 10,),
                             Usertile(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(() => const Livechat()); 
+                              },
                               subtitle: 'Get into direct chat with us.',
-                              text: 'Direct Chat',
+                              text: 'Live Chat',
                               leading: Icons.chat_bubble, 
                             ),
                           ],
