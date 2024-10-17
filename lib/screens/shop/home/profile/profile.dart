@@ -14,6 +14,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'settings/settings.dart';
 import 'usertile.dart';
+import 'usertile/address.dart';
 import 'usertile/payment/payment_card.dart';
 
 class UserProfile extends StatelessWidget {
@@ -99,7 +100,10 @@ void _launchDialer() async {
                 ),
                 // addresses
                 Usertile(
-                  onTap: () {},
+                  onTap: () {
+Get.to(()=> const Address());
+
+                  },
                   subtitle: 'Save your delivery addresses along with your beneficiaries.',
                   text: 'Addresses',
                   leading: Iconsax.house_2,
