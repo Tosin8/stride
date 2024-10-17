@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class AddNewAddress extends StatefulWidget {
   const AddNewAddress({super.key});
@@ -26,9 +27,39 @@ class _AddNewAddressState extends State<AddNewAddress> {
   Future<void> _saveAddress() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      final addressData = '$_beneficiary;$_street;$_landmark;$_area;$_city';
-      await _storage.write(key: _beneficiary!, value: addressData);
-      Get.back(); // Go back to the Address screen after saving
+
+      try {
+        final addressData = '$_beneficiary;$_street;$_landmark;$_area;$_city';
+        await _storage.write(key: _beneficiary!, value: addressData);
+
+        // Show success message using AwesomeSnackbarContent
+        const snackBar = SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'Success!',
+            message: 'Address saved successfully.',
+            contentType: ContentType.success,
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        Get.back(); // Go back to the Address screen after saving
+      } catch (e) {
+        // Show error message using AwesomeSnackbarContent
+        const snackBar = SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'Error!',
+            message: 'Failed to save the address.',
+            contentType: ContentType.failure,
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
   }
 
