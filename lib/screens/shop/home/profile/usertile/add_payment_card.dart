@@ -28,26 +28,30 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
       appBar: AppBar(
         title: const Text('Add Payment Card'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            _buildCardDisplay(), // Card with flip animation
-            const SizedBox(height: 20),
-            _buildCardForm(),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              _buildCardDisplay(), // Card with flip animation
+              const SizedBox(height: 10),
+              _buildCardForm(),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 15 , horizontal: 20),
                 ),
-                padding: const EdgeInsets.all(20),
+                onPressed: _onValidate,
+                child: const Text('Add Card', 
+                style: TextStyle(color: Colors.white),),
               ),
-              onPressed: _onValidate,
-              child: const Text('Add Card'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

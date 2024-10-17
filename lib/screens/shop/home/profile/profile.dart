@@ -9,6 +9,7 @@ import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 import 'usertile.dart';
+import 'usertile/callus.dart';
 import 'usertile/payment_card.dart';
 
 class UserProfile extends StatelessWidget {
@@ -128,27 +129,33 @@ class UserProfile extends StatelessWidget {
                     showBarModalBottomSheet(context: context,
                      builder: (context) => Container(
                       color: Colors.white,
-                      child:  Column(
-                        children: [
-                          const SizedBox(height: 10,),
-                          const Text('Select your Option', style: TextStyle(color: Colors.black, fontSize: 18),),
-                          const SizedBox(height: 10,),
-                          Usertile(
-                            onTap: () {},
-                            subtitle: 'Get into direct call with us.',
-                            text: 'Call Us',
-                            leading: Icons.phone, 
-                          ),
-                          const SizedBox(height: 10,),
-                          const Divider(), 
-                           const SizedBox(height: 10,),
-                          Usertile(
-                            onTap: () {},
-                            subtitle: 'Get into direct chat with us.',
-                            text: 'Direct Chat',
-                            leading: Icons.chat_bubble, 
-                          ),
-                        ],
+                      height: 350,
+                      child:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10,),
+                            const Text('Select your Option', style: TextStyle(color: Colors.black, fontSize: 18),),
+                            const SizedBox(height: 10,),
+                            Usertile(
+                              onTap: () {
+                                Get.to(() => const CallUs()); 
+                              },
+                              subtitle: 'Get into direct call with us.',
+                              text: 'Call Us',
+                              leading: Icons.phone, 
+                            ),
+                            const SizedBox(height: 10,),
+                            const Divider(), 
+                             const SizedBox(height: 10,),
+                            Usertile(
+                              onTap: () {},
+                              subtitle: 'Get into direct chat with us.',
+                              text: 'Direct Chat',
+                              leading: Icons.chat_bubble, 
+                            ),
+                          ],
+                        ),
                       ),
                      ));
                   },
