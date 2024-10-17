@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+        
+      ),
+      body: ListView(
+        scrollDirection: Axis.vertical, 
+        children: const [
+          
+        ],
+      ),
+    );
   }
 }

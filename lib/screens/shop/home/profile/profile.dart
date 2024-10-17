@@ -8,9 +8,11 @@ import 'package:stride/auth/forms/login.dart';
 import 'package:stride/auth/repository/auth_repo.dart';
 import 'package:stride/auth/repository/user_repo.dart';
 import 'package:stride/screens/shop/home/profile/usertile/customer_care/livechat.dart';
+import 'package:stride/screens/shop/home/profile/usertile/faq/faq.dart';
 import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'settings/settings.dart';
 import 'usertile.dart';
 import 'usertile/payment/payment_card.dart';
 
@@ -104,10 +106,12 @@ void _launchDialer() async {
                 ),
                 // settings
                 Usertile(
-                  subtitle: 'Customize your app preferences, privacy, and options.',
-                  onTap: () {
-                    Get.to(() => const Settings()); 
+
+                   onTap: () {
+                    Get.to(() => const SettingScreen()); 
                   },
+                  subtitle: 'Customize your app preferences, privacy, and options.',
+                 
                   text: 'Settings',
                   leading: Iconsax.setting,
                 ),
@@ -137,7 +141,9 @@ void _launchDialer() async {
                 // FAQs
                 Usertile(
                   subtitle: 'Find answers to common questions and issues',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const Faq());
+                  },
                   text: 'FAQs',
                   leading: Icons.question_answer,
                 ),
