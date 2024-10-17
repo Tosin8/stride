@@ -142,7 +142,7 @@ void _launchDialer() async {
                 Usertile(
                   subtitle: 'Find answers to common questions and issues',
                   onTap: () {
-                    Get.to(() => const Faq());
+                    Get.to(() => const FAQScreen());
                   },
                   text: 'FAQs',
                   leading: Icons.question_answer,
