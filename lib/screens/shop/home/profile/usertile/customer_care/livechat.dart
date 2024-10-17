@@ -14,6 +14,13 @@ class _LivechatState extends State<Livechat> {
       appBar: AppBar(
         title: const Text('Live Chat')
       ),
+      bottomSheet: Container(
+        height: 50,
+        color: Colors.black,
+        child: const Center(
+          child: Text('Powered by Stride', style: TextStyle(color: Colors.white),),
+        ),
+      ),
     ) ;
   }
 }
