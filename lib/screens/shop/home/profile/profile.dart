@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import 'package:stride/screens/shop/home/profile/usertile/personal_data.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'usertile.dart';
-import 'usertile/payment_card.dart';
+import 'usertile/payment/payment_card.dart';
 
 class UserProfile extends StatelessWidget {
   final userRepo = UserRepository.instance;
@@ -104,7 +105,9 @@ void _launchDialer() async {
                 // settings
                 Usertile(
                   subtitle: 'Customize your app preferences, privacy, and options.',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const Settings()); 
+                  },
                   text: 'Settings',
                   leading: Iconsax.setting,
                 ),

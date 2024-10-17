@@ -12,6 +12,7 @@ class _LivechatState extends State<Livechat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 1,
         title: const Text('Live Chat')
       ),
       bottomSheet: Container(

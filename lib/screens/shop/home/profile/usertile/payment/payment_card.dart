@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:stride/screens/shop/home/profile/usertile/add_payment_card.dart';
+import 'package:stride/screens/shop/home/profile/usertile/payment/add_payment_card.dart';
 
 class PaymentCard extends StatefulWidget {
   const PaymentCard({super.key});
