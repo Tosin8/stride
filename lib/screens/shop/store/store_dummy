@@ -20,25 +20,26 @@ class _StoreState extends State<Store> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Store'),
-        bottom: const PreferredSize(preferredSize: Size.fromHeight(30), child: Searchbtn(),),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Column(
-            children: [
-      
-              
-              HeaderTitle(
-                text: 'Brands',
-                onPressed: () {},
-              ),
-              const SizedBox(height: 10,), 
-              // Brand images
-              const BrandIcons(),
-              const SizedBox(height: 30,), 
-              ProductsGrid(), 
-            ],
+      body: Container(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              children: [
+
+                const Searchbtn(),
+                HeaderTitle(
+                  text: 'Brands',
+                  onPressed: () {},
+                ),
+                const SizedBox(height: 10,), 
+                // Brand images
+                const BrandIcons(),
+                const SizedBox(height: 10,), 
+                ProductsGrid(), 
+              ],
+            ),
           ),
         ),
       ),
@@ -54,7 +55,7 @@ class Searchbtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Row(
                   children: [
     Expanded(

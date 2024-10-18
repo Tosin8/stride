@@ -32,7 +32,7 @@ final WishlistController wishlistController = Get.put(WishlistController());
             mainAxisSpacing: 5.0,
           ),
          // itemCount: productController.products.length,  // Display all products
-         itemCount: 4,
+         itemCount: productController.products.length, 
           itemBuilder: (context, index) {
             var product = productController.products[index] as Map<String, dynamic>;
 
@@ -156,6 +156,4 @@ final WishlistController wishlistController = Get.put(WishlistController());
     );
   }
 }
-
-
 
