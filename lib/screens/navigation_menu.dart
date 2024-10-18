@@ -73,7 +73,7 @@ import 'package:iconsax/iconsax.dart';
 
 import 'shop/home/home.dart';
 import 'shop/home/profile/profile.dart';
-import 'shop/store.dart';
+import 'shop/store/store.dart';
 import 'shop/wishlist.dart';
 
 class NavigationMenu extends StatelessWidget {
