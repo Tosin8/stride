@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../utils/widgets/constants/images_c.dart';
 import '../controllers/verity_mail_c.dart';
-import '../repository/auth_repo.dart';
 
 class VerifyMail extends StatelessWidget {
   const VerifyMail({
